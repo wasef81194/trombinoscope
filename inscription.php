@@ -10,15 +10,15 @@
 <div id="carte">
 <h1>Trombinoscope-API</h1>
 <form action="./process.php" method="post">
-    <h2 id="res">Connexion </h2>
-    <div id="connexion">
-	<p> Entrer votre login : </p>
-	<p>
-	<input type="e-mail" name="login"/></p>
+	<h2 id="resu">Inscription </h2>
+	<div id="inscription">
+	<p>Entrer votre mail:</p>
+	<input type="e-mail" name="email"/></p>
 	<p> Entrer votre mot de passe :</p>
 	<p>
-	<input type="password" name="password"/>
-	<input type="hidden" name="formtype" value="connexion" />
+	<input type="password" name="passwordi"/>
+
+	<input type="hidden" name="formtype" value="inscription" />
 	</p>
 
 	<p>
@@ -28,7 +28,7 @@
 	</p>
 </div>
 </form>
-<a href=inscription.php>Inscription</a>
+<a href=index.php>Connesxion</a>
 <footer id='haut'>
     <p>Copyright © Wasef Alexandra</p>
 </footer>
