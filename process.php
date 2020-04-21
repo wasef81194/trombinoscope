@@ -1,0 +1,84 @@
+<?php
+session_start();
+echo'<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+	<title>Trombinoscope-API</title>
+	
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<div  id="carte">
+<h1Trombinoscope-API</h1>
+';
+
+if (isset($_POST["formtype"])){
+	$fichier = "document.csv";
+
+	if ($_POST["formtype"] == "inscription") {
+
+		$doesUserExist = FALSE;
+		$lines = file($fichier);
+		for($i=0;$i<sizeof($lines);$i++){	
+			$line = $lines[$i];
+			# remove new line character
+			$line = str_replace("\n","",$line);
+			$t = explode(",", $line);
+			if ($t[0] == $_POST["email"]){
+				$doesUserExist = TRUE;
+			}
+		}
+
+		if( $doesUserExist == TRUE ){
+			echo"<p id ='co_'> ".($_POST["email"])." ce login est déjà pris</p><p id ='bouton'><a href=index.php>Retour</a></p>";
+		}
+		else{
+			$fichier_end = fopen($fichier,"a");
+			$email = $_POST["email"];
+			fwrite($fichier_end, $email .",".md5($_POST["passwordi"]). "\n");
+			fclose($fichier_end);
+			echo "<p id ='co_'>".$email." vient de s'inscrire </p>.<p id ='bouton'><a href=index.php>Connectez-vous</a></p>";
+		}
+	}
+	
+	elseif($_POST["formtype"] == "connexion"){
+
+
+		$doesUserExist = FALSE;
+		$lignes = file($fichier);
+		for($i=0;$i<sizeof($lignes);$i++){	
+			$ligne = $lignes[$i];
+			$ligne = str_replace("\n","",$ligne);
+			if ($ligne == $_POST["login"].",".md5($_POST["password"])){
+				$doesUserExist = TRUE;
+			}
+		}
+
+		if( $doesUserExist == TRUE ){
+		    $_SESSION['login']=$_POST['login'];
+			echo " <p id ='co_'>Bienvenu ! ".$_POST["login"]."</p>";
+			echo "<p id ='co'> Connexion établie </p>";
+			echo "<p id ='bouton'><a href=index.php>Continuez</a></p>";
+		}
+		else{
+			echo "<p id ='co_'>Veuillez réssayer <p id ='bouton'><a href=index.php>Retour</a</p>";
+		}
+		
+	}
+
+	else{
+		header('Location: index.php');
+	} 
+}
+else{
+	header('Location: index.php');
+}
+
+
+?>
+<footer id='bas'>
+   <p>Copyright © Wasef Alexandra</p> 
+</footer>
+</div>
+</body>
+</html>
