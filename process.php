@@ -12,7 +12,7 @@ echo'<html>
 <h1Trombinoscope-API</h1>
 ';
 
-function genererChaineAleatoire($longueur = 10)
+/*function genererChaineAleatoire($longueur = 10)
 {
  $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
  $longueurMax = strlen($caracteres);
@@ -25,7 +25,7 @@ function genererChaineAleatoire($longueur = 10)
 }
 //Utilisation de la fonction
 $chaine = genererChaineAleatoire(10);
-//echo $chaine;
+//echo $chaine;*/
 
 if (isset($_POST["formtype"])){
 	$fichier = "document.csv";
@@ -50,7 +50,9 @@ if (isset($_POST["formtype"])){
 		else{
 			$fichier_end = fopen($fichier,"a");
 			$email = $_POST["email"];
-			$hash=password_hash($_POST["passwordi"], PASSWORD_DEFAULT);
+			$mdp_a_hasher=$_POST["email"].$_POST["passwordi"];
+			$hash=password_hash($mdp_a_hasher, PASSWORD_DEFAULT);
+			$hash_pseudo=md5($_POST["email"]);
 			fwrite($fichier_end, $email .",".$hash. "\n");
 			fclose($fichier_end);
 			echo "<p id ='co_'>".$email." vient de s'inscrire </p>.<p id ='bouton'><a href=index.php>Connectez-vous</a></p>";
@@ -67,7 +69,8 @@ if (isset($_POST["formtype"])){
 			# remove new line character
 			$line = str_replace("\n","",$line);
 			$t = explode(",", $line);
-			$verify_hash=password_verify($_POST["password"], $t[1]);
+			$mdp_verify=$_POST["login"].$_POST["password"];
+			$verify_hash=password_verify($mdp_verify, $t[1]);
 			if ($t[0] == $_POST["login"] and $t[1] == $verify_hash){
 				$doesUserExist = TRUE;
 			}
@@ -75,9 +78,8 @@ if (isset($_POST["formtype"])){
 
 		if( $doesUserExist == TRUE ){
 		    $_SESSION['login']=$_POST['login'];
-			echo " <p id ='co_'>Bienvenu ! ".$_POST["login"]."</p>";
-			echo "<p id ='co'> Connexion établie </p>";
-			echo "<p id ='bouton'><a href=index.php>Continuez</a></p>";
+			echo " <p id ='co_'>Bienvenu ! ".$_POST["login"]."<p id ='co'> Connexion établie </p>
+			<p id ='bouton'><a href=index.php>Continuez</a></p>";
 		}
 		else{
 			echo "<p id ='co_'>Veuillez réssayer <p id ='bouton'><a href=index.php>Retour</a</p>";
