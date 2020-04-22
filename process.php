@@ -12,6 +12,21 @@ echo'<html>
 <h1Trombinoscope-API</h1>
 ';
 
+function genererChaineAleatoire($longueur = 10)
+{
+ $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+ $longueurMax = strlen($caracteres);
+ $chaineAleatoire = '';
+ for ($i = 0; $i < $longueur; $i++)
+ {
+ $chaineAleatoire .= $caracteres[rand(0, $longueurMax - 1)];
+ }
+ return $chaineAleatoire;
+}
+//Utilisation de la fonction
+$chaine = genererChaineAleatoire(10);
+//echo $chaine;
+
 if (isset($_POST["formtype"])){
 	$fichier = "document.csv";
 
@@ -35,7 +50,8 @@ if (isset($_POST["formtype"])){
 		else{
 			$fichier_end = fopen($fichier,"a");
 			$email = $_POST["email"];
-			fwrite($fichier_end, $email .",".md5($_POST["passwordi"]). "\n");
+			$hash=password_hash($_POST["passwordi"], PASSWORD_DEFAULT);
+			fwrite($fichier_end, $email .",".$hash. "\n");
 			fclose($fichier_end);
 			echo "<p id ='co_'>".$email." vient de s'inscrire </p>.<p id ='bouton'><a href=index.php>Connectez-vous</a></p>";
 		}
@@ -45,11 +61,14 @@ if (isset($_POST["formtype"])){
 
 
 		$doesUserExist = FALSE;
-		$lignes = file($fichier);
-		for($i=0;$i<sizeof($lignes);$i++){	
-			$ligne = $lignes[$i];
-			$ligne = str_replace("\n","",$ligne);
-			if ($ligne == $_POST["login"].",".md5($_POST["password"])){
+		$lines = file($fichier);
+		for($i=0;$i<sizeof($lines);$i++){	
+			$line = $lines[$i];
+			# remove new line character
+			$line = str_replace("\n","",$line);
+			$t = explode(",", $line);
+			$verify_hash=password_verify($_POST["password"], $t[1]);
+			if ($t[0] == $_POST["login"] and $t[1] == $verify_hash){
 				$doesUserExist = TRUE;
 			}
 		}
