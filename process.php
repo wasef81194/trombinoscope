@@ -1,16 +1,14 @@
 <?php
 session_start();
 echo'<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
-	<title>Trombinoscope-API</title>
-	
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
-<body>
-<div  id="carte">
-<h1Trombinoscope-API</h1>
-';
+		<head>
+   			 <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+			<title>Trombinoscope-API</title>
+			<link rel="stylesheet" type="text/css" href="css/style.css">
+		</head>
+		<body>
+			<div  id="carte">
+			<h1>Trombinoscope-API</h1>';
 
 /*function genererChaineAleatoire($longueur = 10)
 {
@@ -45,8 +43,23 @@ if (isset($_POST["formtype"])){
 		}
 
 		if( $doesUserExist == TRUE ){
-			echo"<p id ='co_'> ".($_POST["email"])." ce login est déjà pris</p><p id ='bouton'><a href=index.php>Retour</a></p>";
+			echo"<p id ='co_'> ".($_POST["email"])." ce login est déjà pris</p><p id ='bouton'><a href=inscription.php>Retour</a></p>";
 		}
+
+		elseif ($_POST["passwordi"]!=$_POST["verification"]){
+				$doesUserExist = TRUE;
+				echo "les deux mot de passe ne coresspondent pas<p id ='bouton'><a href=inscription.php>Retour</a></p>" ;
+			}
+
+		elseif (!preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#',$_POST['passwordi'])) {
+			$doesUserExist = TRUE;
+        	echo "<p>Mot de passe non conforme</p> <p>Votre mot de passe doit contenir des lettre miniscule et majuscule des chiffre et des caractère spéciaux</p><p id ='bouton'><a href=inscription.php>Veuillez réssayer</a></p> ";
+		}
+		elseif (!preg_match('#^(?=.*[a-z])(?=.*[.])(?=.*[@])#',$_POST['email'])) {
+			$doesUserExist = TRUE;
+        	echo "<p>Mail non conforme</p><p id ='bouton'><a href=inscription.php>Veuillez réssayer</a></p> ";
+		}
+
 		else{
 			$fichier_end = fopen($fichier,"a");
 			$email = $_POST["email"];
@@ -79,17 +92,17 @@ if (isset($_POST["formtype"])){
 		if( $doesUserExist == TRUE ){
 		    $_SESSION['login']=$_POST['login'];
 			echo " <p id ='co_'>Bienvenu ! ".$_POST["login"]."<p id ='co'> Connexion établie </p>
-			<p id ='bouton'><a href=index.php>Continuez</a></p>";
+			<p id ='bouton'><a href=acceuil.php>Continuez</a></p>";
 		}
 		else{
-			echo "<p id ='co_'>Veuillez réssayer <p id ='bouton'><a href=index.php>Retour</a</p>";
+			echo "<p id ='co_'>Veuillez réssayer <p id ='bouton'><a href=index.php>Retour</a></p>";
 		}
 		
 	}
 
 	else{
 		header('Location: index.php');
-	} 
+	}
 }
 else{
 	header('Location: index.php');

@@ -16,8 +16,10 @@
 	<input type="e-mail" name="email"/></p>
 	<p> Entrer votre mot de passe :</p>
 	<p>
-	<input type="password" name="passwordi"/>
-
+	<input type="password" name="passwordi"/></p>
+	<p> Verification de votre mot de passe :</p>
+	<p>
+	<input type="password" name="verification"/>
 	<input type="hidden" name="formtype" value="inscription" />
 	</p>
 

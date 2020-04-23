@@ -28,7 +28,7 @@
 	</p>
 </div>
 </form>
-<a href=inscription.php>Inscription</a>
+<a href="inscription.php">Inscription</a>
 
 <footer id='haut'>
     <p>Copyright © Wasef Alexandra</p>
