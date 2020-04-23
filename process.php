@@ -91,6 +91,7 @@ if (isset($_POST["formtype"])){
 
 		if( $doesUserExist == TRUE ){
 		    $_SESSION['login']=$_POST['login'];
+		    $_SESSION['password']=$_POST['password'];
 			echo " <p id ='co_'>Bienvenu ! ".$_POST["login"]."<p id ='co'> Connexion établie </p>
 			<p id ='bouton'><a href=acceuil.php>Continuez</a></p>";
 		}

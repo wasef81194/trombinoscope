@@ -9,8 +9,13 @@ echo'<html>
 		<body>
 			<div  id="carte">
 			<h1>Trombinoscope-API</h1>';
-echo $_SESSION['login'];
+echo "<div='edit'>";
+echo "nom = ".$_SESSION['login'];
+echo "mdp = ".$_SESSION['password'];
+
+echo"</div>"
 ?>
+<p id ='bouton_edit'><a href=edit.php>Edit</a></p>
 <footer id='bas'>
    <p>Copyright © Wasef Alexandra</p> 
 </footer>
