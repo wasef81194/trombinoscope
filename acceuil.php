@@ -10,8 +10,12 @@ echo'<html>
 			<div  id="carte">
 			<h1>Trombinoscope-API</h1>';
 echo "<div='edit'>";
-echo "nom = ".$_SESSION['login'];
-echo "mdp = ".$_SESSION['password'];
+echo "e-mail = ".$_SESSION['login']."\n";
+echo "nom = ".$_SESSION['nom']."\n";
+echo "prenom = ".$_SESSION['prenom']."\n";
+echo "filiere = ".$_SESSION['filiere']."\n";
+echo "groupe = ".$_SESSION['groupe']."\n";
+echo "mdp = ".$_SESSION['password']."\n";
 
 echo"</div>"
 ?>

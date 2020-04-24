@@ -65,8 +65,7 @@ if (isset($_POST["formtype"])){
 			$email = $_POST["email"];
 			$mdp_a_hasher=$_POST["email"].$_POST["passwordi"];
 			$hash=password_hash($mdp_a_hasher, PASSWORD_DEFAULT);
-			$hash_pseudo=md5($_POST["email"]);
-			fwrite($fichier_end, $email .",".$hash. "\n");
+			fwrite($fichier_end, $email .",".$hash.",".$_POST["nom"].",".$_POST["prenom"].",".$_POST["filiere"].",".$_POST["groupe"]."\n");
 			fclose($fichier_end);
 			echo "<p id ='co_'>".$email." vient de s'inscrire </p>.<p id ='bouton'><a href=index.php>Connectez-vous</a></p>";
 		}
@@ -86,12 +85,16 @@ if (isset($_POST["formtype"])){
 			$verify_hash=password_verify($mdp_verify, $t[1]);
 			if ($t[0] == $_POST["login"] and $t[1] == $verify_hash){
 				$doesUserExist = TRUE;
+				$_SESSION['login']=$t[0];
+		   		$_SESSION['password']=$_POST["password"];
+		    	$_SESSION['nom']=$t[2];
+		    	$_SESSION['prenom']=$t[3];
+		    	$_SESSION['filiere']=$t[4];
+		    	$_SESSION['groupe']=$t[5];
 			}
 		}
 
 		if( $doesUserExist == TRUE ){
-		    $_SESSION['login']=$_POST['login'];
-		    $_SESSION['password']=$_POST['password'];
 			echo " <p id ='co_'>Bienvenu ! ".$_POST["login"]."<p id ='co'> Connexion établie </p>
 			<p id ='bouton'><a href=acceuil.php>Continuez</a></p>";
 		}
