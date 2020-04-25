@@ -30,22 +30,36 @@ $lines = file($fichier);
     <h2 id="res">Modification </h2>
     <div id="modification">
     <p> Entrer votre Nom : </p>
-	<p>
-	<input type="text" name="nom"/></p>
+	<p>	<input type="text" name="nom" value="<?php 
+	if(isset($_POST['nom'])){
+		echo $_POST['nom'];
+	}
+	else{
+		echo $_SESSION['nom']; 
+	}
+	?>" /></p>
 	<p> Entrer votre Prénom : </p>
 	<p>
-	<input type="text" name="prenom"/></p>
-	<p> Entrer votre email : </p>
-	<p>
-	<input type="e-mail" name="e-mail" value="<?php
-	if(isset($_SESSION['login'])){
-		echo $_SESSION['login'];
+	<input type="text" name="prenom" value="<?php
+	if(isset($_POST['prenom'])){
+		echo $_POST['prenom'];
 	}
-	?>"/>
+	else{
+		echo $_SESSION['prenom']; 
+	} ?>" /></p>
+	<select name="filiere">
+    	<option name ='f1' >MIPI</option>
+    	<option name ='f2' >LPI</option>
+    	<option name ='f3' >Licence de Droit</option>
+    	<option name ='f4' >Licence des Arts</option>
+    </select>
+    <p>Entrer votre groupe :</p>
+    <select name="groupe">
+    	<option name ='g1' >L1</option>
+    	<option name ='g2' >L2</option>
+    	<option name ='g3' >L3</option>
+    </select>
 	</p>
-	<p> Entrer votre mot de passe :</p>
-	<p>
-	<input type="password" name="mdp"/>
 	<input type="hidden" name="formtype" value="connexion" />
 	</p>
 	<p>
@@ -57,7 +71,7 @@ $lines = file($fichier);
 </form>
 
 <?php
-//function récrire()
+//function modification(){}
 $fichier = "document.csv";
 //echo "SALUTTTT";
 //echo $_POST["e-mail"];
@@ -65,38 +79,34 @@ $fichier = "document.csv";
 
 
 //echo "SALUTTTT";
-$doesUserExist = FALSE;
 $lines = file($fichier);
 for($i=0;$i<sizeof($lines);$i++){	
 	$line = $lines[$i];
 	# remove new line character
-	$line = str_replace("\n","",$line);
+	//$line = str_replace("\n","",$line);
 	$t = explode(",", $line);
-	if(isset($_POST["e-mail"])){
-		if ($t[0] == $_POST["e-mail"] and $t[0] == $_SESSION['login'] and $t[1] == $_POST["password"] and $t[1] == $_SESSION['password'] and $t[2] == $_POST["nom"] and $t[2] == $_SESSION['nom'] and $t[3] == $_POST["prenom"] and $t[3] == $_SESSION['prenom'] and $t[4] == $_POST["filiere"] and $t[4] == $_SESSION['filiere'] and $t[5] == $_POST["groupe"] and $t[5] == $_SESSION['groupe']){
-			echo "Les modification n'ont pas changer ";
-			$doesUserExist = TRUE;
+	$new_line = $t[0].",".$t[1].",".$_POST["nom"].",".$_POST["prenom"].",".$_POST["filiere"].",".$_POST["groupe"]."\n";
+	if (isset($_POST["prenom"]) and isset($_POST["nom"])){
+		if ($t[0] != $_SESSION['login']){
+			$line_saved = $line;
 		}
-		elseif ($t[0] != $_SESSION['login']){
-				$line_saved = $line;
-				//echo $line_saved;
-			}
-		elseif($t[0] != $_POST["e-mail"] and $t[0] == $_SESSION['login']){
-			//echo $line;
-			$_SESSION['login']=$_POST["e-mail"];
+		elseif( $t[2] != $_POST["nom"] or $t[3] != $_POST["prenom"] or $t[4] != $_POST["filiere"] or $t[5] != $_POST["groupe"]){
 			$fichier_end = fopen($fichier,"w");
-			$rehash = $_POST["e-mail"].$_SESSION['password'];
-			$hash2 = password_hash($rehash, PASSWORD_DEFAULT);
-			$new_line=$line_saved."\n".$_POST["e-mail"].",".$hash2.",".$t[2].",".$t[3].",".$t[4].",".$t[5]."\n";
+			$new_line=$line_saved.$new_line;
 			fwrite($fichier_end, $new_line);
 			fclose($fichier_end);
+			$_SESSION['nom']= $_POST["nom"];
+			$_SESSION['prenom']=$_POST["prenom"];
+			$_SESSION['filiere']=$_POST["filiere"];
+			$_SESSION['groupe']=$_POST["groupe"];
 			echo "Vos modification ont bien été prise en compte";
-
 		}
+		else{
+			echo " Erreur";
+		}
+
 	}
-}
-
-
+	}
 ?>
 
 <footer id='bas'>
