@@ -80,6 +80,7 @@ $fichier = "document.csv";
 
 //echo "SALUTTTT";
 $lines = file($fichier);
+$line_saved ='';
 for($i=0;$i<sizeof($lines);$i++){	
 	$line = $lines[$i];
 	# remove new line character
@@ -88,12 +89,15 @@ for($i=0;$i<sizeof($lines);$i++){
 	$new_line = $t[0].",".$t[1].",".$_POST["nom"].",".$_POST["prenom"].",".$_POST["filiere"].",".$_POST["groupe"]."\n";
 	if (isset($_POST["prenom"]) and isset($_POST["nom"])){
 		if ($t[0] != $_SESSION['login']){
-			$line_saved = $line;
-		}
+			$line_saved = $line_saved.$line;
+			$content = $line_saved;
+			//echo $line_saved;
+	}
+
 		elseif( $t[2] != $_POST["nom"] or $t[3] != $_POST["prenom"] or $t[4] != $_POST["filiere"] or $t[5] != $_POST["groupe"]){
 			$fichier_end = fopen($fichier,"w");
-			$new_line=$line_saved.$new_line;
-			fwrite($fichier_end, $new_line);
+			$content=$content.$new_line;
+			fwrite($fichier_end, $content);
 			fclose($fichier_end);
 			$_SESSION['nom']= $_POST["nom"];
 			$_SESSION['prenom']=$_POST["prenom"];
