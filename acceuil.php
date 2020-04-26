@@ -9,17 +9,18 @@ echo'<html>
 		<body>
 			<div  id="carte">
 			<h1>Trombinoscope-API</h1>';
-echo "<div='edit'>";
-echo "e-mail = ".$_SESSION['login']."\n";
-echo "nom = ".$_SESSION['nom']."\n";
-echo "prenom = ".$_SESSION['prenom']."\n";
-echo "filiere = ".$_SESSION['filiere']."\n";
-echo "groupe = ".$_SESSION['groupe']."\n";
-echo "mdp = ".$_SESSION['password']."\n";
-
-echo"</div>"
+echo "<div id='avatar'>
+	<h2>Profil</h2>";
+echo " <p> E-mail = ".$_SESSION['login']."</p>";
+echo "<p>Nom = ".$_SESSION['nom']."</p>";
+echo "<p>Prenom = ".$_SESSION['prenom']."</p>";
+echo "<p>Filiere = ".$_SESSION['filiere']."</p>";
+echo "<p>Groupe = ".$_SESSION['groupe']."</p>";
+echo "<p>mdp = ".$_SESSION['password']."</p>";
+echo "<img src=".$_SESSION['photo'].">";
 ?>
-<p id ='bouton_edit'><a href=edit.php>Edit</a></p>
+
+<p><a class="button_" href=edit.php>Edit</a>       <a  class="button_" href=deconnexion.php>Déconnexion</a></p></div>
 <footer id='bas'>
    <p>Copyright © Wasef Alexandra</p> 
 </footer>

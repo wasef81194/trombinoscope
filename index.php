@@ -22,13 +22,14 @@
 	</p>
 
 	<p>
-	<input type="submit" value="valider"/>
+	<input type="submit" value="valider" class="button" />
+	<p>Vous n'avez pas encore de compte ?
+	<a href="inscription.php" class="boutton"> cliquez ici pour vous inscrire</a></p>
 
-	<input type="reset" value="recommancer"/>
 	</p>
 </div>
 </form>
-<a href="inscription.php">Inscription</a>
+
 
 <footer id='haut'>
     <p>Copyright © Wasef Alexandra</p>

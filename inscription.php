@@ -9,7 +9,7 @@
 <body>
 <div id="carte">
 <h1>Trombinoscope-API</h1>
-<form action="./process.php" method="post" type="inscription">
+<form action="./process.php" method="post" enctype="multipart/form-data" type="inscription" class="inscription">
 	<h2 id="resu">Inscription </h2>
 	<div id="inscription">
 	<p>Entrer votre Nom:</p>
@@ -37,17 +37,17 @@
 	<p> Verification de votre mot de passe :</p>
 	<p>
 	<input type="password" name="verification"/>
+	<p> Saissiez votre photo de profil :</p>
+	<p><input type="file" name="avatar" /></p>
 	<input type="hidden" name="formtype" value="inscription" />
-	</p>
+	<input type="submit" value="valider" class="button" />
 
-	<p>
-	<input type="submit" value="valider"/>
-
-	<input type="reset" value="recommancer"/>
+	<input type="reset" value="recommancer" class="button" />
+	<p>Vous avez déja un compte ?
+	<a href=index.php>cliquez ici pour vous connectez</a></p>
 	</p>
 </div>
 </form>
-<a href=index.php>Connesxion</a>
 <footer id='haut'>
     <p>Copyright © Wasef Alexandra</p>
 </footer>
