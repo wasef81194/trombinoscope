@@ -11,16 +11,16 @@ echo'<html>
 			<h1>Trombinoscope-API</h1>';
 echo "<div id='avatar'>
 	<h2>Profil</h2>";
-echo " <p> E-mail = ".$_SESSION['login']."</p>";
-echo "<p>Nom = ".$_SESSION['nom']."</p>";
-echo "<p>Prenom = ".$_SESSION['prenom']."</p>";
-echo "<p>Filiere = ".$_SESSION['filiere']."</p>";
-echo "<p>Groupe = ".$_SESSION['groupe']."</p>";
-echo "<p>mdp = ".$_SESSION['password']."</p>";
+echo " <p> E-mail : ".$_SESSION['login']."</p>";
+echo "<p>Nom : ".$_SESSION['nom']."</p>";
+echo "<p>Prenom : ".$_SESSION['prenom']."</p>";
+echo "<p>Filiere : ".$_SESSION['filiere']."</p>";
+echo "<p> Groupe : ".$_SESSION['groupe']."</p>";
+//echo "<p>mdp = ".$_SESSION['password']."</p>";
 echo "<img src=".$_SESSION['photo'].">";
 ?>
 
-<p><a class="button_" href=edit.php>Edit</a>       <a  class="button_" href=deconnexion.php>Déconnexion</a></p></div>
+<p><a class="button_" href=edit.php>Edit</a>   <a  class="button_" href=deconnexion.php>Déconnexion</a></p></div>
 <footer id='bas'>
    <p>Copyright © Wasef Alexandra</p> 
 </footer>

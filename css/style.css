@@ -25,7 +25,7 @@ h2 {
 }
  
 /* LOGIN & REGISTER FORM */
-form.inscription, form.modification{
+form.inscription{
 	width: 600px;
     height: 800px;
     margin: 100px auto;
@@ -57,8 +57,9 @@ form {
     padding-top: 1px;
 }
 #avatar{
+	text-align: center;
 	width: 600px;
-    height: 550px;
+    height: 580px;
     margin: 150px auto;
     background: white;
     border-radius: 3px;
@@ -143,4 +144,15 @@ img{
   background-color: #5BA7E9;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
+}
+footer {
+	font-style: bold;
+	font-size: 15px;
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color:#5BA7E9;
+   color: white;
+   text-align: center;
 }
