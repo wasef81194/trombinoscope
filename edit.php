@@ -113,7 +113,8 @@ for($i=0;$i<sizeof($lines);$i++){
             	{   
                 		$chemin = "photo/".$t[0].".".$extensionUpload;
                 		$resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
-                		if($resultat)
+                		$message = "Vos modification ont bien été prise en compte";
+                		/*if($resultat)
                 		{
                     		$fichier_end = fopen($fichier,"w");
                     		$n_line = $t[0].",".$t[1].",".$_POST["nom"].",".$_POST["prenom"].",".$_POST["filiere"].",".$_POST["groupe"].",".$chemin."\n";
@@ -126,19 +127,19 @@ for($i=0;$i<sizeof($lines);$i++){
                 		}
                 		else
                			{
-                   	 	$message = "Erreur durant l'importation de votre photo de profil ";
+                   	 	$message_erreur = "Erreur durant l'importation de votre photo de profil ";
                    	 	//$doesUserExist = TRUE;
-                		}
+                		}*/
             		}
             		else
             		{
-                		$message = "Votre photo de profil doit être au format jpg, jpeg, gif ou png ";
+                		$message_erreur = "Votre photo de profil doit être au format jpg, jpeg, gif ou png ";
                 	//$doesUserExist = TRUE;
             		}
         		}
         		else
         		{
-            		$message = "Votre photo de profil ne doit pas dépasser 2Mo ";
+            		$message_erreur = "Votre photo de profil ne doit pas dépasser 2Mo ";
             	//$doesUserExist = TRUE;
         		}
 			}
@@ -155,7 +156,7 @@ for($i=0;$i<sizeof($lines);$i++){
 				}
 		}
 		else{
-			$message = " Aucune modification a été faite";
+			$message_erreur = " Aucune modification n'a été faite";
 		}
 
 	}
@@ -173,11 +174,14 @@ for($i=0;$i<sizeof($lines);$i++){
 
 <form action="./edit.php" method="post" class="modification" enctype="multipart/form-data">
     <h2 id="res">Modification </h2>
-    <div id="message"><?php  
+    <?php  
     if (isset($message)){
-    	echo $message;
+    	echo '<div id="message">'.$message."</div>";
     }
-     ?></div>
+    else{
+    	echo "<div id='message_erreur'>".$message_erreur."</div>";
+    }
+     ?>
     <p> Entrer votre Nom : </p>
 	<p>	<input type="text" name="nom" value="<?php 
 		echo $_SESSION['nom'];

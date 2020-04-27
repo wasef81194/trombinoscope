@@ -26,6 +26,7 @@ h2 {
  
 /* LOGIN & REGISTER FORM */
 form.inscription{
+	font-weight: bold;
 	width: 600px;
     height: 800px;
     margin: 100px auto;
@@ -36,6 +37,9 @@ form.inscription{
     padding-top: 1px;
 
 }
+#nodeco{
+	text-decoration-style: none;
+}
 form.modification{
 	width: 600px;
     height: 550px;
@@ -44,9 +48,12 @@ form.modification{
     border-radius: 3px;
     text-align: center;
     box-shadow: 0 0 10px rgba(0,0,0, .4);
+    font-weight: bold;
     padding-top: 1px;
 }
+
 form {
+	font-weight: bold;
     width: 600px;
     height: 400px;
     margin: 150px auto;
@@ -117,7 +124,11 @@ form {
     margin-top: 20px;
 }
 #message{
-	color: green;
+	color: #00cc2e;
+	font-weight: bold;
+	margin-right: 70px;
+	margin-left: 70px;
+	background-color: #bbfcc9;
 }
 img{
 	width: 200px;
@@ -146,7 +157,6 @@ img{
   transform: translateY(4px);
 }
 footer {
-	font-style: bold;
 	font-size: 15px;
    position: fixed;
    left: 0;
@@ -155,4 +165,11 @@ footer {
    background-color:#5BA7E9;
    color: white;
    text-align: center;
+}
+#message_erreur{
+	color: #fe3004;
+	font-weight: bold;
+	margin-right: 70px;
+	margin-left: 70px;
+	background-color: #ffd1c7;
 }

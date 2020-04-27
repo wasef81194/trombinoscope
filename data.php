@@ -42,6 +42,6 @@ function TrieEtu ($filiere,$groupe){
 }
 
 
-echo TrieEtu ("MIPI","L2");
+echo TrieEtu ("LPI","L1");
 
 ?>
