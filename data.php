@@ -14,6 +14,7 @@ $data["eleve"]["2"]["prenom"] = "Margot";
 
 echo json_encode($data,True);*/
 
+
 function TrieEtu ($filiere,$groupe){
 	$fichier = "document.csv";
 	$lines = file($fichier);
