@@ -211,7 +211,9 @@ for($i=0;$i<sizeof($lines);$i++){
 	<input type="submit" value="valider" class="button" />
 
 	<input type="reset" value="recommancer" class="button" />
+
 	</p>
+	<a href=acceuil.php>Retour</a>
 </form>
 
 <?php
