@@ -1,20 +1,4 @@
 <?php
-/*header('content-type:application/json');
-$data = array();
-$data["filiere"]  = "MIPI";
-$data["groupe"]  = "L1";
-$data["eleve"] = array();
-$data["eleve"]["1"]= array();
-$data["eleve"]["1"]["nom"] = "Wasef";
-$data["eleve"]["1"]["prenom"] = "Alexandra";
-$data["eleve"]["2"]= array();
-$data["eleve"]["2"]["nom"] = "Touret";
-$data["eleve"]["2"]["prenom"] = "Margot";
-
-
-echo json_encode($data,True);*/
-
-
 function TrieEtu ($filiere,$groupe){
 	$fichier = "document.csv";
 	$lines = file($fichier);
