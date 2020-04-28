@@ -140,7 +140,7 @@ for($i=0;$i<sizeof($lines);$i++){
                         $message_erreur = "Votre photo de profil doit être au format jpg, jpeg, gif ou png ";
                     //$doesUserExist = TRUE;
                     }
-                }
+                }  
                 else
                 {
                     $message_erreur = "Votre photo de profil ne doit pas dépasser 2Mo ";
