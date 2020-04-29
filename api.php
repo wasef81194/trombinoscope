@@ -35,9 +35,7 @@ if (isset($_POST["formtype"])){
 				$keys = GenereKeys(10);
 				$email = $_POST["email"];
 				$fichier_end = fopen($fichier,"a");
-				//$keys_hasher=$_POST["email"].;
-				//$hash=password_hash($keys_hasher, PASSWORD_DEFAULT);
-				fwrite($fichier_end, $email.",".$keys."\n");
+				fwrite($fichier_end,$email.",".$keys."\n");
 				fclose($fichier_end);
 				$message= "Votre clé est ".$keys;
 			}
@@ -80,12 +78,10 @@ if (isset($_POST["formtype"])){
     }
      ?>
 	<p>Entrer votre mail:</p>
-	<input type="e-mail" name="email" value="<?php
+	<input type="e-mail" name="email" value="<?php 
 	if (isset($_SESSION['login'])){
-		echo $_SESSION['login'];
-	}
-	?>
-	" /></p>
+		echo$_SESSION['login'];}?>"/>
+	</p>
 	<input type="hidden" name="formtype" value="api" />
 	<input type="submit" value="valider" class="button" />
 
