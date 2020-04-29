@@ -26,23 +26,27 @@ if (isset($_POST["formtype"])){
 					$ExistKeys = $t[1];
 				}
 			}
-		
-			if( $doesUserExist == TRUE ){
-				$message = "Votre clé est ".$ExistKeys;;
+			if ($_POST["email"]==$_SESSION['login']){
+				if( $doesUserExist == TRUE ){
+					$message = "Votre clé est ".$ExistKeys;;
 
+				}
+				else{
+					$keys = GenereKeys(10);
+					$email = $_POST["email"];
+					$fichier_end = fopen($fichier,"a");
+					fwrite($fichier_end,$email.",".$keys."\n");
+					fclose($fichier_end);
+					$message= "Votre clé est ".$keys;
+				}
 			}
-			else{
-				$keys = GenereKeys(10);
-				$email = $_POST["email"];
-				$fichier_end = fopen($fichier,"a");
-				fwrite($fichier_end,$email.",".$keys."\n");
-				fclose($fichier_end);
-				$message= "Votre clé est ".$keys;
+			else {
+				$message_erreur = "Entrez le mail correspondant a votre session";
 			}
 		}
 	}
 	else {
-		$message_erreur = "Remplisser le champs manquant";
+		$message_erreur = "Veuillez entrez votre e-mail";
 	}
 }
 		
