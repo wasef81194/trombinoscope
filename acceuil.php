@@ -7,8 +7,14 @@ echo'<html>
 			<link rel="stylesheet" type="text/css" href="css/style.css">
 		</head>
 		<body>
-			<div  id="carte">
-			<h1>Trombinoscope-API</h1>';
+			<div class="navbar">
+                <h1>Trombinoscope-API</h1>
+                <a href="deconnexion.php">Déconnexion</a>
+                <a href="api.php">API</a>
+                <a href="acceuil.php">Acceuil</a>
+                
+    </div>
+			';
 echo "<div id='avatar'>
 	<h2>Profil</h2>";
 echo " <p> E-mail : ".$_SESSION['login']."</p>";
@@ -20,7 +26,7 @@ echo "<p> Groupe : ".$_SESSION['groupe']."</p>";
 echo "<img src=".$_SESSION['photo'].">";
 ?>
 
-<p><a class="button_" href=edit.php>Edit</a>   <a  class="button_" href=deconnexion.php>Déconnexion</a></p></div>
+<p><a class="button_" href=edit.php> Modifier </a></div>
 <footer id='bas'>
    <p>Copyright © Wasef Alexandra</p> 
 </footer>

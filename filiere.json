@@ -1,0 +1,40 @@
+{
+    "NomDesFilieres":[
+
+        {
+            "Filiere":"LPI",
+            "groupes":[
+                "L1",
+                "L2",
+                "L3"
+            ]
+        },
+
+        {
+            "Filiere":"MIPI",
+            "groupes":[
+                "L1",
+                "L2",
+                "L3"
+            ]
+        },
+        {
+        	"Filiere":"Licence de Droit",
+            "groupes":[
+                "L1",
+                "L2",
+                "L3"
+            ]
+        },
+        {
+        	"Filiere":"Licence des Arts",
+            "groupes":[
+                "L1",
+                "L2",
+                "L3"
+            ]
+        }
+
+    ]
+    
+}

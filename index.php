@@ -1,3 +1,42 @@
+<?php  
+session_start();
+if (isset($_POST["formtype"])){
+	if($_POST["formtype"] == "connexion"){
+		$fichier = "document.csv";
+
+		$doesUserExist = FALSE;
+		$lines = file($fichier);
+		for($i=0;$i<sizeof($lines);$i++){	
+			$line = $lines[$i];
+			# remove new line character
+			$line = str_replace("\n","",$line);
+			$t = explode(",", $line);
+			$mdp_verify=$_POST["login"].$_POST["password"];
+			$verify_hash=password_verify($mdp_verify, $t[1]);
+			if ($t[0] == $_POST["login"] and $t[1] == $verify_hash){
+				$doesUserExist = TRUE;
+				$_SESSION['login']=$t[0];
+		   		$_SESSION['password']=$t[1];
+		    	$_SESSION['nom']=$t[2];
+		    	$_SESSION['prenom']=$t[3];
+		    	$_SESSION['filiere']=$t[4];
+		    	$_SESSION['groupe']=$t[5];
+		    	$_SESSION['photo']=$t[6];
+
+			}
+		}
+
+		if( $doesUserExist == TRUE ){
+			header('Location: acceuil.php');
+		}
+		else{
+			 $message_erreur = "Veuillez réssayer";
+		}
+		
+	}
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +48,13 @@
 <body>
 <div id="carte">
 <h1>Trombinoscope-API</h1>
-<form action="./process.php" method="post">
+<form action="./index.php" method="post">
     <h2 id="res">Connexion </h2>
+    <?php  
+    if (isset($message_erreur)){
+        echo "<div id='message_erreur'>".$message_erreur."</div>";
+    }
+     ?>
     <div id="connexion">
 	<p> Entrer votre login : </p>
 	<p>

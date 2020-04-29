@@ -1,79 +1,8 @@
 <?php
 session_start();
-/*$fichier = "document.csv";
-$doesUserExist = FALSE;
-$lines = file($fichier);
-    for($i=0;$i<sizeof($lines);$i++){   
-        $line = $lines[$i];
-        # remove new line character
-        $line = str_replace("\n","",$line);
-        $t = explode(",", $line);
-        $mdp_verify=$_POST["login"].$_POST["password"];
-        $verify_hash=password_verify($mdp_verify, $t[1]);
-        if ($t[0] == $_POST["login"] and $t[1] == $verify_hash){
-            $doesUserExist = TRUE;
-        }
-    }
 
-if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name']))
-            {
-            $tailleMax = 2097152;
-            $extensionsValides = array('jpg', 'jpeg', 'gif', 'png');
-            if($_FILES['avatar']['size'] <= $tailleMax)
-            {
-                $extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));
-                if(in_array($extensionUpload, $extensionsValides))
-                {   
-                    $chemin = "photo/".$_POST["email"].".".$extensionUpload;
-                    $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
-                    if($resultat)
-                    {
-                        $fichier_end = fopen($fichier,"a");
-                        $email = $_POST["email"];
-                        $mdp_a_hasher=$_POST["email"].$_POST["passwordi"];
-                        $hash=password_hash($mdp_a_hasher, PASSWORD_DEFAULT);
-                        fwrite($fichier_end, $email.",".$hash.",".$_POST["nom"].",".$_POST["prenom"].",".$_POST["filiere"].",".$_POST["groupe"].",".$chemin."\n");
-                        fclose($fichier_end);
-                        echo "<p id ='co_'>".$email." vient de s'inscrire </p>.<p id ='bouton'><a href=index.php>Connectez-vous</a></p>";
-                    }
-                    else
-                    {
-                     echo "Erreur durant l'importation de votre photo de profil <p id ='bouton'><a href=inscription.php>Retour</a></p>";
-                     //$doesUserExist = TRUE;
-                    }
-                }
-                else
-                {
-                    echo "Votre photo de profil doit être au format jpg, jpeg, gif ou png<p id ='bouton'><a href=inscription.php>Retour</a></p> ";
-                    //$doesUserExist = TRUE;
-                }
-            }
-            else
-            {
-                echo "Votre photo de profil ne doit pas dépasser 2Mo <p id ='bouton'><a href=inscription.php>Retour</a></p>";
-                //$doesUserExist = TRUE;
-            }
-        }
-        else{
-
-            echo "<p>vous n'avez pas mis de photo </p><p id ='bouton'><a href=inscription.php>Retour</a></p>";
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    */
-function save(){
-    $fichier = "document.csv";
+$fichier = "document.csv";
+function save($fichier){
     $lines = file($fichier);
     $line_saved ='';
     for($i=0;$i<sizeof($lines);$i++){   
@@ -86,19 +15,6 @@ function save(){
     }
     return $content;
 }
-$fichier = "document.csv";
-
-//echo "SALUTTTT";
-//echo $_POST["e-mail"];
-
-/*echo "e-mail = ".$_SESSION['login']."\n";
-echo "nom = ".$_SESSION['nom']."\n";
-echo "prenom = ".$_SESSION['prenom']."\n";
-echo "filiere = ".$_SESSION['filiere']."\n";
-echo "groupe = ".$_SESSION['groupe']."\n";
-echo "mdp = ".$_SESSION['password']."\n";*/
-
-//echo "SALUTTTT";
 $lines = file($fichier);
 $line_saved ='';
 
@@ -111,7 +27,7 @@ for($i=0;$i<sizeof($lines);$i++){
     $new_line = $t[0].",".$t[1].",".$_POST["nom"].",".$_POST["prenom"].",".$_POST["filiere"].",".$_POST["groupe"].",".$t[6];
     if (isset($_POST["prenom"]) and isset($_POST["nom"])){
         if ($t[0] != $_SESSION['login']){ 
-            $content = save();
+            $content = save($fichier);
            }
         
         elseif( $t[2] != $_POST["nom"] or $t[3] != $_POST["prenom"] or $t[4] != $_POST["filiere"] or $t[5] != $_POST["groupe"] or isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name']))
@@ -138,13 +54,11 @@ for($i=0;$i<sizeof($lines);$i++){
                     else
                     {
                         $message_erreur = "Votre photo de profil doit être au format jpg, jpeg, gif ou png ";
-                    //$doesUserExist = TRUE;
                     }
                 }   
                 else
                 {
                     $message_erreur = "Votre photo de profil ne doit pas dépasser 2Mo ";
-                //$doesUserExist = TRUE;
                 }
             }
             else{
@@ -174,7 +88,13 @@ for($i=0;$i<sizeof($lines);$i++){
     </head>
 <body>
     <div  id="carte">
-    <h1>Trombinoscope-API</h1>
+    <div class="navbar">
+                <h1>Trombinoscope-API</h1>
+                <a href="deconnexion.php">Déconnexion</a>
+                <a href="api.php">API</a>
+                <a href="acceuil.php">Acceuil</a>
+                
+    </div>
 
 <form action="./edit.php" method="post" class="modification" enctype="multipart/form-data">
     <h2 id="res">Modification </h2>
@@ -221,7 +141,6 @@ for($i=0;$i<sizeof($lines);$i++){
     <input type="reset" value="recommancer" class="button" />
 
     </p>
-    <a href=acceuil.php>Retour</a>
 </form>
 
 <?php
