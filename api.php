@@ -1,31 +1,56 @@
 <?php 
+session_start();
+function GenereKeys($length=10){
+    $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $string = '';
+    for($i=0; $i<$length; $i++){
+        $string .= $chars[rand(0, strlen($chars)-1)];
+    }
+    return $string;
+}
+
 if (isset($_POST["formtype"])){
 	$fichier = "keys.csv";
+	if (isset($_POST["email"]) and !empty($_POST["email"])){
+		if ($_POST["formtype"] == "api") {
 
-	if ($_POST["formtype"] == "api") {
+			$doesUserExist = FALSE;
+			$lines = file($fichier);
+			for($i=0;$i<sizeof($lines);$i++){	
+				$line = $lines[$i];
+				# remove new line character
+				$line = str_replace("\n","",$line);
+				$t = explode(",", $line);
+				if ($t[0] == $_POST["email"]){
+					$doesUserExist = TRUE;
+					$ExistKeys = $t[1];
+				}
+			}
+		
+			if( $doesUserExist == TRUE ){
+				$message = "Votre clé est ".$ExistKeys;;
 
-		$doesUserExist = FALSE;
-		$lines = file($fichier);
-		for($i=0;$i<sizeof($lines);$i++){	
-			$line = $lines[$i];
-			# remove new line character
-			$line = str_replace("\n","",$line);
-			$t = explode(",", $line);
-			if ($t[0] == $_POST["email"]){
-				$doesUserExist = TRUE;
+			}
+			else{
+				$keys = GenereKeys(10);
+				$email = $_POST["email"];
+				$fichier_end = fopen($fichier,"a");
+				//$keys_hasher=$_POST["email"].;
+				//$hash=password_hash($keys_hasher, PASSWORD_DEFAULT);
+				fwrite($fichier_end, $email.",".$keys."\n");
+				fclose($fichier_end);
+				$message= "Votre clé est ".$keys;
 			}
 		}
-
-		if( $doesUserExist == TRUE ){
-			$message_erreur = ($_POST["email"])." ce login est déjà pris";
-		}
-		else{
-			echo "ok";
-		}
-
-		
-		}
 	}
+	else {
+		$message_erreur = "Remplisser le champs manquant";
+	}
+}
+		
+		
+	
+
  ?>
 <!DOCTYPE html>
 <html>
@@ -37,20 +62,35 @@ if (isset($_POST["formtype"])){
 </head>
 <body>
 <div id="carte">
-<h1>Trombinoscope-API</h1>
+<div class="navbar">
+    <h1>Trombinoscope-API</h1>
+    <a href="deconnexion.php">Déconnexion</a>
+    <a href="api.php">API</a>
+    <a href="acceuil.php">Acceuil</a>
+                
+ </div>
 <form action="./api.php" method="post" enctype="multipart/form-data" type="api" class="cle_api">
-	<h2 id="resu">Genrer une clé </h2>
+	<h2 id="resu">Générer ou retrouver votre clé API </h2>
 	<?php  
     if (isset($message)){
         echo '<div id="message">'.$message."</div>";
     }
+    else{
+        echo "<div id='message_erreur'>".$message_erreur."</div>";
+    }
      ?>
 	<p>Entrer votre mail:</p>
-	<input type="e-mail" name="email"/></p>
+	<input type="e-mail" name="email" value="<?php
+	if (isset($_SESSION['login'])){
+		echo $_SESSION['login'];
+	}
+	?>
+	" /></p>
 	<input type="hidden" name="formtype" value="api" />
 	<input type="submit" value="valider" class="button" />
 
 </form>
+
 <footer>
     <p>Copyright © Wasef Alexandra</p>
 </footer>
