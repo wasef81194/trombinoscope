@@ -81,5 +81,8 @@ elseif (isset($_GET['requete']) and isset($_GET['key']) and VerifyKeys($_GET['ke
 		readfile("filiere.json");//http://trombinoscope-api.alwaysdata.net/data.php?requete=filiere&key=jBw9rlmt43
 	}
 }
+else{
+	echo " Erreur votre url n'est pas conforme";
+}
 
 ?>

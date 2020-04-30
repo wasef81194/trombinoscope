@@ -110,8 +110,9 @@ if (isset($_POST["formtype"])){
 	<select name="filiere">
     	<option name ='f1' >MIPI</option>
     	<option name ='f2' >LPI</option>
-    	<option name ='f3' >Licence de Droit</option>
-    	<option name ='f4' >Licence des Arts</option>
+    	<option name ='f3' >LI</option>
+    	<option name ='f4' >LPI-RIWS</option>
+    	<option name ='f5' >LPI RS</option>
     </select>
     <p>Entrer votre groupe :</p>
     <select name="groupe">

@@ -19,7 +19,7 @@
             ]
         },
         {
-        	"Filiere":"Licence de Droit",
+        	"Filiere":"LI",
             "groupes":[
                 "L1",
                 "L2",
@@ -27,7 +27,15 @@
             ]
         },
         {
-        	"Filiere":"Licence des Arts",
+        	"Filiere":"LPI-RIWS",
+            "groupes":[
+                "L1",
+                "L2",
+                "L3"
+            ]
+        },
+         {
+        	"Filiere":"LPI RS",
             "groupes":[
                 "L1",
                 "L2",

@@ -120,8 +120,9 @@ for($i=0;$i<sizeof($lines);$i++){
         <option name="f"><?php echo $_SESSION['filiere']?></option>
         <option name ='f1' >MIPI</option>
         <option name ='f2' >LPI</option>
-        <option name ='f3' >Licence de Droit</option>
-        <option name ='f4' >Licence des Arts</option>
+        <option name ='f3' >LI</option>
+        <option name ='f4' >LPI-RIWS</option>
+        <option name ='f5' >LPI RS</option>
     </select>
     <p>Entrer votre groupe :</p>
     <select name="groupe">
