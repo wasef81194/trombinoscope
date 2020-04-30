@@ -2,7 +2,7 @@
 session_start();
 if (isset($_POST["formtype"])){
 	if($_POST["formtype"] == "connexion"){
-		$fichier = "document.csv";
+		$fichier = "account.csv";
 
 		$doesUserExist = FALSE;
 		$lines = file($fichier);
@@ -17,11 +17,6 @@ if (isset($_POST["formtype"])){
 				$doesUserExist = TRUE;
 				$_SESSION['login']=$t[0];
 		   		$_SESSION['password']=$t[1];
-		    	$_SESSION['nom']=$t[2];
-		    	$_SESSION['prenom']=$t[3];
-		    	$_SESSION['filiere']=$t[4];
-		    	$_SESSION['groupe']=$t[5];
-		    	$_SESSION['photo']=$t[6];
 
 			}
 		}
@@ -42,12 +37,11 @@ if (isset($_POST["formtype"])){
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
     </meta>
-	<title>Trombinoscope-API</title>
+	<title>Trombinoscope</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css"></link>
 </head>
 <body>
-<div id="carte">
-<h1>Trombinoscope-API</h1>
+<h1>Trombinoscope</h1>
 <form action="./index.php" method="post">
     <h2 id="res">Connexion </h2>
     <?php  
@@ -78,6 +72,5 @@ if (isset($_POST["formtype"])){
 <footer id='haut'>
     <p>Copyright © Wasef Alexandra</p>
 </footer>
-</div>
 </body>
 </html>

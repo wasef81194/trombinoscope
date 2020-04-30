@@ -31,7 +31,8 @@ function TrieEtuFiliere ($filiere){
 	$lines = file($fichier);
 	header('content-type:application/json');
 	$data = array();
-		for($i=0;$i<sizeof($lines);$i++){	
+	$l=0;
+		for($i=0;$i<sizeof($lines);$i++){
 			$line = $lines[$i];
 			# remove new line character
 			$line = str_replace("\n","",$line);
@@ -39,13 +40,13 @@ function TrieEtuFiliere ($filiere){
 			//echo $t[0];
 			if($t[4]==$filiere){
 				$data["filiere"]  = $filiere;
-				$data["eleve"][$i]= array();
-				$data["eleve"][$i]["nom"] = $t[2];
-				$data["eleve"][$i]["prenom"] = $t[3];
-				$data["eleve"][$i]["mail"] = $t[0];
-				$data["eleve"][$i]["groupe"] = $t[5];
-				$data["eleve"][$i]["picture"] =  "http://trombinoscope-api.alwaysdata.net/".$t[6];
-					
+				$data["eleve"][$l]= array();
+				$data["eleve"][$l]["nom"] = $t[2];
+				$data["eleve"][$l]["prenom"] = $t[3];
+				$data["eleve"][$l]["mail"] = $t[0];
+				$data["eleve"][$l]["groupe"] = $t[5];
+				$data["eleve"][$l]["picture"] =  "http://trombinoscope-api.alwaysdata.net/".$t[6];
+				$l=$l+1;		
 			}
 		}
 		$donnee = json_encode($data,True);
@@ -70,15 +71,15 @@ function VerifyKeys($keys){
 
 
 if (isset($_GET['filiere']) and isset($_GET['groupe']) and isset($_GET['key']) and VerifyKeys($_GET['key'])==TRUE){
-			echo TrieEtu ($_GET['filiere'],$_GET['groupe']);//http://trombinoscope-api.alwaysdata.net/data.php?filiere=LPI&groupe=L1&key=jBw9rlmt43
+			echo TrieEtu ($_GET['filiere'],$_GET['groupe']);//http://trombinoscope-api.alwaysdata.net/data.php?filiere=LPI&groupe=L1&key=pHQxXMN1nO 
 	}
 elseif (isset($_GET['filiere']) and isset($_GET['key']) and VerifyKeys($_GET['key'])==TRUE) {
-	echo TrieEtuFiliere ($_GET['filiere']);//http://trombinoscope-api.alwaysdata.net/data.php?filiere=MIPI&key=jBw9rlmt43
+	echo TrieEtuFiliere ($_GET['filiere']);//http://trombinoscope-api.alwaysdata.net/data.php?filiere=MIPI&key=pHQxXMN1nO 
 }
 elseif (isset($_GET['requete']) and isset($_GET['key']) and VerifyKeys($_GET['key'])==TRUE) {
 	header('content-type:application/json');
 	if($_GET['requete']=="filiere"){
-		readfile("filiere.json");//http://trombinoscope-api.alwaysdata.net/data.php?requete=filiere&key=jBw9rlmt43
+		readfile("filiere.json");//http://trombinoscope-api.alwaysdata.net/data.php?requete=filiere&key=pHQxXMN1nO 
 	}
 }
 else{
