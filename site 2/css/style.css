@@ -1,0 +1,93 @@
+table
+{
+border:3px solid #6495ed;
+border-collapse:collapse;
+width:50%;
+margin:auto;
+}
+th{
+	border: medium solid #6495ed;
+	background-color: #D0E3FA;
+}
+td{
+	font-family: sans-serif;
+	border: medium solid #6495ed;
+	text-align: center;
+}
+td, th 
+{	
+    text-align: center;
+    padding: 10px;
+}
+body {
+  font-family: "Lato", sans-serif;
+}
+
+h1,h2{
+	text-align: center;
+}
+.main {
+  margin-left: 305px; 
+}
+
+nav {
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 30px;
+}
+
+nav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+nav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.card {
+	display: inline-block;
+  	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  	transition: 0.3s;
+  	width: 20%;
+ 	border-radius: 5px;
+ 	margin-bottom: 15px; 
+}
+
+.card:hover {
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+img {
+  border-radius: 5px 5px 0 0;
+  width: 100%;
+}
+
+.container {
+  	padding: 2px 10px;
+}
+nav p{
+	padding: 6px 8px 6px 16px;
+  	position: absolute;
+ 	bottom: 10px;
+  	width: 100%;
+  	margin-top: 50px;
+  	font-size: 15px;
+  	color: #818181;
+
+}

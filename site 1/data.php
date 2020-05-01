@@ -4,6 +4,7 @@ function TrieEtu ($filiere,$groupe){
 	$lines = file($fichier);
 	header('content-type:application/json');
 	$data = array();
+	$l=0;
 		for($i=0;$i<sizeof($lines);$i++){	
 			$line = $lines[$i];
 			# remove new line character
@@ -14,11 +15,12 @@ function TrieEtu ($filiere,$groupe){
 				$data["filiere"]  = $filiere;
 				if($t[5]==$groupe){
 					$data["groupe"]  = $groupe;
-					$data["eleve"][$i]= array();
-					$data["eleve"][$i]["nom"] = $t[2];
-					$data["eleve"][$i]["prenom"] = $t[3];
-					$data["eleve"][$i]["mail"] = $t[0];
-					$data["eleve"][$i]["picture"] =  "http://trombinoscope-api.alwaysdata.net/".$t[6];
+					$data["eleve"][$l]= array();
+					$data["eleve"][$l]["nom"] = $t[2];
+					$data["eleve"][$l]["prenom"] = $t[3];
+					$data["eleve"][$l]["mail"] = $t[0];
+					$data["eleve"][$l]["picture"] =  "http://trombinoscope-api.alwaysdata.net/".$t[6];
+					$l=$l+1;
 					
 				}
 			}
