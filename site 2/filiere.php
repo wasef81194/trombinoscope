@@ -37,14 +37,15 @@ session_start();
       <a href="groupe.php?filiere=LPI-RS&groupe=L1&key=pHQxXMN1nO">LPI-RS-L1</a></li>
       <a href="groupe.php?filiere=LPI-RS&groupe=L2&key=pHQxXMN1nO">LPI-RS-L2</a></li>
       <a href="groupe.php?filiere=LPI-RS&groupe=L3&key=pHQxXMN1nO">LPI-RS-L3</a></li>
-      <p>© Wasef Alexandra</p>
+      
       </ul>
-        <a class ="bottom"href="deconnexion.php">Déconnexion</a>
+         <a href="deconnexion.php">Déconnexion</a>
+         <p>© Wasef Alexandra</p>
       </ul> 
     </nav>
 <div class="main">
 	<h1>Trombinoscope</h1>
-	<h2>Eleves par filiere</h2>
+	<h2>Eleves de <?php echo $_GET['filiere']?></h2>
 	<?php
 	if(isset($_GET['filiere'])){
 		$recup_data = file_get_contents('http://trombinoscope-api.alwaysdata.net/data.php?filiere='.$_GET['filiere'].'&key=pHQxXMN1nO');

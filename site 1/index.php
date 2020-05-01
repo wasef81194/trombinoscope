@@ -47,7 +47,7 @@ if (isset($_POST["formtype"])){
 </head>
 <body>
 <div id="carte">
-<h1>Trombinoscope-API</h1>
+<h1 class="titre">Trombinoscope-API</h1>
 <form action="./index.php" method="post">
     <h2 id="res">Connexion </h2>
     <?php  

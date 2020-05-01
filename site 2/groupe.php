@@ -1,5 +1,7 @@
 <?php
 session_start();
+setcookie("LastRequestFiliere",$_GET['filiere'],time()+3600);
+setcookie("LastRequestGroup",$_GET['groupe'],time()+3600);
 // voir les filiere du département informatique
 //voir les une filiere specifies
 //voir un groupe de filiere 
@@ -38,15 +40,13 @@ session_start();
       <a href="groupe.php?filiere=LPI-RS&groupe=L2&key=pHQxXMN1nO">LPI-RS-L2</a></li>
       <a href="groupe.php?filiere=LPI-RS&groupe=L3&key=pHQxXMN1nO">LPI-RS-L3</a></li>
       </ul>
-      <div class ="bottom">
         <a href="deconnexion.php">Déconnexion</a>
         <p>© Wasef Alexandra</p>
-      </div>
       </ul> 
     </nav>
 <div class="main">
   <h1>Trombinoscope</h1>
-  <h2>Eleves par filiere</h2>
+  <h2>Eleves de <?php echo $_GET['filiere']." en ". $_GET['groupe'] ?></h2>
   <?php
   if(isset($_GET['filiere'])and isset($_GET['groupe'])){
     $recup_data = file_get_contents('http://trombinoscope-api.alwaysdata.net/data.php?filiere='.$_GET['filiere'].'&groupe='.$_GET['groupe'].'&key=pHQxXMN1nO');
@@ -59,7 +59,6 @@ session_start();
           echo "<div class='container'>";
             echo "<p> Nom : ".$data["eleve"][$i]['nom']."  ".$data["eleve"][$i]['prenom']."</p>";
             echo "<p> Mail : ".$data["eleve"][$i]['mail']."</p>";
-            echo "<p> Groupe : ".$data["eleve"][$i]['groupe']."</p>";
           echo"</div>";
         echo "</div>";  
     }

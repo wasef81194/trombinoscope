@@ -32,8 +32,21 @@
   color: #5BA7E9;
 }
 
-h1{
-    text-align: center;
+.titre{
+  font-size: 32px;
+  text-shadow: -1px -1px #809bf1, 1px 1px#809bf1, -3px 0 4px #000;
+  font-family:Arial, Helvetica, sans-serif;
+  color: white;
+  padding:20px;
+  font-weight:lighter;
+  -moz-box-shadow: 2px 2px 6px #809bf1;  
+  -webkit-box-shadow: 2px 2px 6px #809bf1;  
+  box-shadow:2px 2px 6px #888;  
+  text-align:center;
+  display:block;
+  margin:0px;
+  background-color:#5BA7E9; 
+  margin-bottom: 50px;
 }
 body {
 	margin:0;

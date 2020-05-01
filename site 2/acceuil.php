@@ -40,21 +40,17 @@ session_start();
       <a href="groupe.php?filiere=LPI-RS&groupe=L3&key=pHQxXMN1nO">LPI-RS-L3</a></li>
       </ul>
          <a href="deconnexion.php">Déconnexion</a>
-        <p>© Wasef Alexandra</p>
+         <p>© Wasef Alexandra</p>
       </ul> 
     </nav>
+
 <div class="main">
 
 <h1>Trombinoscope</h1>
 <h2>Bienvenu <?php echo $_SESSION['login'] ?></h2>
-
-<p>Intéressé par les sciences informatiques ? Venez étudier au Département des Sciences Informatiques de l'université de Cergy-Pontoise! Le Département vous propose de vous former sur les thématiques à la pointe du domaine, celles qui garantissent un excellent taux d'insertion dans le monde professionnel : informatique embarquée, réseaux et sécurité, systèmes d'information distribués...</p>
-
-<p>De la licence pro aux masters (professionnels et recherche), en apprentissage ou non, vous trouverez forcément le cursus qui vous convient !</p>
-
-<p>De plus, à chaque rentrée depuis 2013, le Département propose aux étudiants qui le souhaitent, de s'inscrire en CMI (Cursus de Master en Ingénierie), une nouvelle approche de l'excellence scientifique et technique!</p>
-
-<p>Découvrez la liste des filieres présente dans le départment informatique de notre établissement :</p>
+<div id='center'>
+<p id="bas">Découvrez la liste des filieres présente dans le départment informatique de notre établissement :</p>
+</div>
 <table>
 
    <tr>
@@ -82,6 +78,14 @@ for ($i=0; $i < 4 ; $i++) {
 
 ?>
 </table>
+<?php
+if (isset($_COOKIE["LastRequestFiliere"]) and isset($_COOKIE["LastRequestGroup"])) {
+	echo "
+	<div id='center'>
+		<a class='boutton' href='groupe.php?filiere=".$_COOKIE["LastRequestFiliere"]."&groupe=".$_COOKIE["LastRequestGroup"]."&key=pHQxXMN1nO'>Derniere requete </a>
+	</div>	";
+}
+?>
 </div>
 </body>
 </html>

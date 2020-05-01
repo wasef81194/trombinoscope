@@ -90,7 +90,7 @@ if (isset($_POST["formtype"])){
 </head>
 <body>
 <div id="carte">
-<h1>Trombinoscope-API</h1>
+<h1 class="titre">Trombinoscope-API</h1>
 <form action="./inscription.php" method="post" enctype="multipart/form-data" type="inscription" class="inscription">
 	<h2 id="resu">Inscription </h2>
 	<?php  

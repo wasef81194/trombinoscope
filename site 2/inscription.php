@@ -56,7 +56,7 @@ if (isset($_POST["formtype"])){
 	<title>Trombinoscope</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css"></link>
 </head>
-<body>
+<body class="font">
 <h1>Trombinoscope</h1>
 <form action="./inscription.php" method="post" enctype="multipart/form-data" type="inscription" class="inscription">
 	<h2 id="resu">Inscription </h2>
@@ -78,16 +78,15 @@ if (isset($_POST["formtype"])){
 	<p>
 	<input type="password" name="verification"/>
 	<input type="hidden" name="formtype" value="inscription" />
-	<input type="submit" value="valider" class="button" />
 
-	<input type="reset" value="recommancer" class="button" />
+	<p><input type="submit" value="valider" class="button" /></p>
 	
 	<p>Vous avez déja un compte ?
 	<a href=index.php>cliquez ici pour vous connectez</a></p>
 	</p>
 </div>
 </form>
-<footer id='haut'>
+<footer>
     <p>Copyright © Wasef Alexandra</p>
 </footer>
 </body>

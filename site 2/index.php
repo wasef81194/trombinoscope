@@ -25,7 +25,7 @@ if (isset($_POST["formtype"])){
 			header('Location: acceuil.php');
 		}
 		else{
-			 $message_erreur = "Veuillez réssayer";
+			 $message_erreur = "Veuillez réessayer";
 		}
 		
 	}
@@ -40,7 +40,7 @@ if (isset($_POST["formtype"])){
 	<title>Trombinoscope</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css"></link>
 </head>
-<body>
+<body class="font">
 <h1>Trombinoscope</h1>
 <form action="./index.php" method="post">
     <h2 id="res">Connexion </h2>
@@ -62,7 +62,7 @@ if (isset($_POST["formtype"])){
 	<p>
 	<input type="submit" value="valider" class="button" />
 	<p>Vous n'avez pas encore de compte ?
-	<a href="inscription.php" class="boutton"> cliquez ici pour vous inscrire</a></p>
+	<a href="inscription.php" > cliquez ici pour vous inscrire</a></p>
 
 	</p>
 </div>
