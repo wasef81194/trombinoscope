@@ -10,7 +10,7 @@ function GenereKeys($length=10){
 }
 
 if (isset($_POST["formtype"])){
-	$fichier = "keys.csv";
+	$fichier = "./noacess/keys.csv";
 	if (isset($_POST["email"]) and !empty($_POST["email"])){
 		if ($_POST["formtype"] == "api") {
 

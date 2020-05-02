@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$fichier = "document.csv";
+$fichier = "./noacess/document.csv";
 function save($fichier){
     $lines = file($fichier);
     $line_saved ='';

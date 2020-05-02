@@ -1,6 +1,6 @@
 <?php 
 if (isset($_POST["formtype"])){
-	$fichier = "document.csv";
+	$fichier = "./noacess/document.csv";//./noacess/
 
 	if ($_POST["formtype"] == "inscription") {
 

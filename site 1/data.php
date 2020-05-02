@@ -1,6 +1,6 @@
 <?php
 function TrieEtu ($filiere,$groupe){
-	$fichier = "document.csv";
+	$fichier = "./noacess/document.csv";
 	$lines = file($fichier);
 	header('content-type:application/json');
 	$data = array();
@@ -29,7 +29,7 @@ function TrieEtu ($filiere,$groupe){
 		return $donnee;
 }
 function TrieEtuFiliere ($filiere){
-	$fichier = "document.csv";
+	$fichier = "./noacess/document.csv";
 	$lines = file($fichier);
 	header('content-type:application/json');
 	$data = array();
@@ -56,7 +56,7 @@ function TrieEtuFiliere ($filiere){
 }
 
 function VerifyKeys($keys){
-	$fichier = "keys.csv";
+	$fichier = "./noacess/keys.csv";
 		$KeysExist = FALSE;
 		$lines = file($fichier);
 			for($i=0;$i<sizeof($lines);$i++){	

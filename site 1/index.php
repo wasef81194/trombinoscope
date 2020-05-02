@@ -2,7 +2,7 @@
 session_start();
 if (isset($_POST["formtype"])){
 	if($_POST["formtype"] == "connexion"){
-		$fichier = "document.csv";
+		$fichier = "./noacess/document.csv";
 
 		$doesUserExist = FALSE;
 		$lines = file($fichier);

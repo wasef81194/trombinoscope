@@ -74,7 +74,7 @@ $chaine = genererChaineAleatoire(10);
 //echo $chaine;*/
 
 if (isset($_POST["formtype"])){
-	$fichier = "document.csv";
+	$fichier = "./noacess/document.csv";
 
 	if ($_POST["formtype"] == "inscription") {
 
