@@ -71,17 +71,43 @@ function VerifyKeys($keys){
 		return $KeysExist;
 }
 
+function CountFile($date,$heure,$cle){
+	$fichier = fopen('./compteur/'.$date.'_'.$heure.'_'.$cle.'.txt','c+' ); //c+ permet d'ouvrir le fichier pour lecture et écriture mais n'écrase pas le fichier si il existe
+	$count = intval(fgets($fichier));//intval = int
+	$count++;
+	fseek($fichier, 0);//remet le pointeur au début du fichier
+	fputs($fichier,$count);
+	fclose($fichier);
+	return $count;
+}
 
+$heure = date("H");
+$date = date("Y-m-d");
 if (isset($_GET['filiere']) and isset($_GET['groupe']) and isset($_GET['key']) and VerifyKeys($_GET['key'])==TRUE){
-			echo TrieEtu ($_GET['filiere'],$_GET['groupe']);//http://trombinoscope-api.alwaysdata.net/data.php?filiere=LPI&groupe=L1&key=pHQxXMN1nO 
+	if (CountFile($date,$heure,$_GET['key'])<150) {
+		echo TrieEtu ($_GET['filiere'],$_GET['groupe']);//http://trombinoscope-api.alwaysdata.net/data.php?filiere=LPI&groupe=L1&key=pHQxXMN1nO 2pHAL4FSFx
 	}
+	else{
+		echo " Vous avez atteint le nombre maximal d'utilisation de votre clé réesayer dans une heure";
+	}
+}
 elseif (isset($_GET['filiere']) and isset($_GET['key']) and VerifyKeys($_GET['key'])==TRUE) {
-	echo TrieEtuFiliere ($_GET['filiere']);//http://trombinoscope-api.alwaysdata.net/data.php?filiere=MIPI&key=pHQxXMN1nO 
+	if (CountFile($date,$heure,$_GET['key'])<150) {
+		echo TrieEtuFiliere ($_GET['filiere']);//http://trombinoscope-api.alwaysdata.net/data.php?filiere=MIPI&key=pHQxXMN1nO 
+	}
+	else{
+		echo " Vous avez atteint le nombre maximal d'utilisation de votre clé réesayer dans une heure";
+	}
 }
 elseif (isset($_GET['requete']) and isset($_GET['key']) and VerifyKeys($_GET['key'])==TRUE) {
-	header('content-type:application/json');
-	if($_GET['requete']=="filiere"){
-		readfile("filiere.json");//http://trombinoscope-api.alwaysdata.net/data.php?requete=filiere&key=pHQxXMN1nO 
+	if (CountFile($date,$heure,$_GET['key'])<150) {	
+		header('content-type:application/json');
+		if($_GET['requete']=="filiere"){
+			readfile("filiere.json");//http://trombinoscope-api.alwaysdata.net/data.php?requete=filiere&key=pHQxXMN1nO 
+		}
+	}
+	else{
+		echo " Vous avez atteint le nombre maximal d'utilisation de votre clé réesayer dans une heure";
 	}
 }
 else{
