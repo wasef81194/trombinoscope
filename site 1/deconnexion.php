@@ -8,7 +8,7 @@ unset($_SESSION['filiere']);
 unset($_SESSION['groupe']);
 unset($_SESSION['photo']);
 session_destroy();
-header('Location: index.php');
+header('Location: connexion.php');
 exit();
   
 ?>

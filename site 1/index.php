@@ -1,82 +1,103 @@
-<?php  
+<?php
 session_start();
-if (isset($_POST["formtype"])){
-	if($_POST["formtype"] == "connexion"){
-		$fichier = "./noacess/document.csv";
-
-		$doesUserExist = FALSE;
-		$lines = file($fichier);
-		for($i=0;$i<sizeof($lines);$i++){	
-			$line = $lines[$i];
-			# remove new line character
-			$line = str_replace("\n","",$line);
-			$t = explode(",", $line);
-			$mdp_verify=$_POST["login"].$_POST["password"];
-			$verify_hash=password_verify($mdp_verify, $t[1]);
-			if ($t[0] == $_POST["login"] and $t[1] == $verify_hash){
-				$doesUserExist = TRUE;
-				$_SESSION['login']=$t[0];
-		   		$_SESSION['password']=$t[1];
-		    	$_SESSION['nom']=$t[2];
-		    	$_SESSION['prenom']=$t[3];
-		    	$_SESSION['filiere']=$t[4];
-		    	$_SESSION['groupe']=$t[5];
-		    	$_SESSION['photo']=$t[6];
-
-			}
-		}
-
-		if( $doesUserExist == TRUE ){
-			header('Location: acceuil.php');
-		}
-		else{
-			 $message_erreur = "Veuillez réssayer";
-		}
-		
-	}
-}
-
 ?>
-<!DOCTYPE html>
 <html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
-    </meta>
-	<title>Trombinoscope-API</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css"></link>
-</head>
-<body>
-<div id="carte">
-<h1 class="titre">Trombinoscope-API</h1>
-<form action="./index.php" method="post">
-    <h2 id="res">Connexion </h2>
-    <?php  
-    if (isset($message_erreur)){
-        echo "<div id='message_erreur'>".$message_erreur."</div>";
-    }
-     ?>
-    <div id="connexion">
-	<p> Entrer votre login : </p>
-	<p>
-	<input type="e-mail" name="login"/></p>
-	<p> Entrer votre mot de passe :</p>
-	<p>
-	<input type="password" name="password"/>
-	<input type="hidden" name="formtype" value="connexion" />
-	</p>
+		<head>
+   			 <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+			<title>Trombinoscope-API</title>
+			<link rel="stylesheet" type="text/css" href="css/style.css">
+		</head>
+		<body class='nocenter'>
+			<div class="navbar">
+			<?php
+			if (isset($_SESSION['login'])) {
+				echo' 
+               	<h1>Trombinoscope-API</h1>
+                <a href="deconnexion.php">Déconnexion</a>
+                <a href="api.php">Cle API</a>
+                <a href="acceuil.php">Profil</a>
+                <a href="index.php">Documentation</a>';
+			}
+			else{
+               echo' 
+               <h1>Trombinoscope-API</h1>
+                <a href="inscription.php">Inscription</a>
+                <a href="connexion.php">Connexion</a>
+                <a href="index.php">Documentation</a>
+                ';
+            }
+            ?>
+                
+    </div>
+   <div id='doc'>
+   	<section>
+   		<article>
+   		<h2>Description de l'API </h2>
+   		<p>
+   			Vous pouvez appeler l'API par nom de filiere ou nom de groupe. L'API répond avec une liste d'élves ou d'information correspondent au filiere ou groupe recherché.
+   		</p>
+   		<h3>Appel API</h3>
+   		<p>
+   			Pour cette API il existe trois urls qui nous permettent de retourner 3 page JSON. Pour cela, voila les urls et leur descripion :
+   		</p>
 
-	<p>
-	<input type="submit" value="valider" class="button" />
-	<p>Vous n'avez pas encore de compte ?
-	<a href="inscription.php" class="boutton"> cliquez ici pour vous inscrire</a></p>
+   			<h4>Information des filieres</h4>
+   			<p class="url">
+   				http://trombinoscope-api.alwaysdata.net/data.php?requete=filiere&key={Your Key}
+   			</p>
+   			<p>
+   				Cette URL permet d'afficher les informations sur les filieres du département informatique. Cela va retourner toute les filieres et les groupes corespondant au département indormatique.
+   			</p>
+   			<h4> Eleves par filieres</h4>
+   			<p class="url">http://trombinoscope-api.alwaysdata.net/data.php?filiere={Filiere}&key={Your Key}</p>
+   			<p> 
+   				Cette URL permet d'afficher tout les éléves de chaque filieres. Il existe 4 filiere dans le département informatique qui sont les suivante :
+   			</p>
+   				<table>
+   					<thead> <!-- En-tête du tableau -->
+       				<tr>
+           				<th>Filiere</th>
+           				<th colspan="3">Groupe</th>
+       				</tr>
+   					</thead>
 
-	</p>
-</div>
-</form>
-
-
-<footer id='haut'>
-    <p>Copyright © Wasef Alexandra</p>
+   					<tbody> <!-- Corps du tableau -->
+      					 <tr>
+          					 <td>LPI</td>
+          					 <td>L1</td>
+          					 <td>L2</td>
+          					 <td>L3</td>
+      					 </tr>
+      					 <tr>
+           					<td>MIPI</td>
+          					 <td>L1</td>
+          					 <td>L2</td>
+          					 <td>L3</td>
+      					 </tr>
+       					<tr>
+           					<td>LPI-RIWS</td>
+          					 <td>L1</td>
+          					 <td>L2</td>
+          					 <td>L3</td>
+       					</tr>
+       					<tr>
+          				 <td>LPI-RS</td>
+           				<td>L1</td>
+          				<td>L2</td>
+          				<td>L3</td>
+       					</tr>
+       				</tbody>
+       			</table>
+       		<h4> Eleves par filieres et groupe </h4>
+   			<p class="url">http://trombinoscope-api.alwaysdata.net/data.php?filiere={Filiere}&groupe={Group}&key={Your Key}</p>
+   			<p> 
+   				Cette URL permet d'afficher les éléves du groupe de la filiere rechercher. 
+   			</p>
+   		</article>
+   	</section>
+   </div>
+<footer>
+   <p>Copyright © Wasef Alexandra</p> 
 </footer>
 </div>
 </body>

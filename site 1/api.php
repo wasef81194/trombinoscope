@@ -66,9 +66,10 @@ if (isset($_POST["formtype"])){
 <div id="carte">
 <div class="navbar">
     <h1>Trombinoscope-API</h1>
-    <a href="deconnexion.php">Déconnexion</a>
-    <a href="api.php">API</a>
-    <a href="acceuil.php">Acceuil</a>
+     <a href="deconnexion.php">Déconnexion</a>
+     <a href="api.php">Cle API</a>
+     <a href="acceuil.php">Profil</a>
+     <a href="index.php">Documentation</a>
                 
  </div>
 <form action="./api.php" method="post" enctype="multipart/form-data" type="api" class="cle_api">

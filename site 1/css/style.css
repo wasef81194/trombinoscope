@@ -1,3 +1,4 @@
+
 .navbar {
   margin-bottom: 30%;
   overflow: hidden;
@@ -106,7 +107,7 @@ form {
 	font-weight: bold;
     width: 600px;
     height: 400px;
-    margin: 160px auto;
+    margin: 230px auto;
     background: white;
     border-radius: 3px;
     text-align: center;
@@ -122,6 +123,17 @@ form {
     border-radius: 3px;
     box-shadow: 0 0 10px rgba(0,0,0, .4);
     padding-top: 1px;
+}
+#doc{
+  padding-left: 10px; 
+  width: 900px;
+    height: 860px;
+    margin: 130px auto;
+    background: white;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0,0,0, .4);
+    padding-top: 1px;
+    font-size: 17px;
 }
  
 .button {   
@@ -223,4 +235,32 @@ footer {
 	margin-right: 70px;
 	margin-left: 70px;
 	background-color: #ffd1c7;
+}
+table
+{
+  border:3px solid red;
+  border-collapse:collapse;
+  width:50%;
+  margin:auto;
+}
+th{
+  border: medium solid red;
+  background-color: #ffcfda;
+}
+td{
+  font-family: sans-serif;
+  border: medium solid red;
+  text-align: center;
+}
+td, th 
+{ 
+    text-align: center;
+    padding: 10px;
+}
+
+p.url{
+  color: red;
+  background-color: #ffcfda;
+  font-weight: bold;
+  margin-right: 10px;
 }

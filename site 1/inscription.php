@@ -89,8 +89,13 @@ if (isset($_POST["formtype"])){
 	<link rel="stylesheet" type="text/css" href="css/style.css"></link>
 </head>
 <body>
-<div id="carte">
-<h1 class="titre">Trombinoscope-API</h1>
+<div class="navbar">
+                <h1>Trombinoscope-API</h1>
+                <a href="inscription.php">Inscription</a>
+                <a href="connexion.php">Connexion</a>
+                <a href="index.php">Documentation</a>
+                
+    </div>
 <form action="./inscription.php" method="post" enctype="multipart/form-data" type="inscription" class="inscription">
 	<h2 id="resu">Inscription </h2>
 	<?php  
@@ -135,13 +140,12 @@ if (isset($_POST["formtype"])){
 	<input type="reset" value="recommancer" class="button" />
 	
 	<p>Vous avez déja un compte ?
-	<a href=index.php>cliquez ici pour vous connectez</a></p>
+	<a href=connexion.php>cliquez ici pour vous connectez</a></p>
 	</p>
 </div>
 </form>
-<footer id='haut'>
+<footer>
     <p>Copyright © Wasef Alexandra</p>
 </footer>
-</div>
 </body>
 </html>

@@ -91,8 +91,9 @@ for($i=0;$i<sizeof($lines);$i++){
     <div class="navbar">
                 <h1>Trombinoscope-API</h1>
                 <a href="deconnexion.php">Déconnexion</a>
-                <a href="api.php">API</a>
-                <a href="acceuil.php">Acceuil</a>
+                <a href="api.php"> Cle API</a>
+                <a href="acceuil.php">Profil</a>
+                <a href="index.php">Documentation</a>
                 
     </div>
 
@@ -122,7 +123,7 @@ for($i=0;$i<sizeof($lines);$i++){
         <option name ='f2' >LPI</option>
         <option name ='f3' >LI</option>
         <option name ='f4' >LPI-RIWS</option>
-        <option name ='f5' >LPI RS</option>
+        <option name ='f5' >LPI-RS</option>
     </select>
     <p>Entrer votre groupe :</p>
     <select name="groupe">

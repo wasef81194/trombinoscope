@@ -1,5 +1,7 @@
 <?php
 session_start();
+if (isset($_SESSION['login'])) {
+
 echo'<html>
 		<head>
    			 <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
@@ -10,8 +12,9 @@ echo'<html>
 			<div class="navbar">
                 <h1>Trombinoscope-API</h1>
                 <a href="deconnexion.php">Déconnexion</a>
-                <a href="api.php">API</a>
-                <a href="acceuil.php">Acceuil</a>
+                <a href="api.php">Cle API</a>
+                <a href="acceuil.php">Profil</a>
+                <a href="index.php">Documentation</a>
                 
     </div>
 			';
@@ -24,12 +27,17 @@ echo "<p>Filiere : ".$_SESSION['filiere']."</p>";
 echo "<p> Groupe : ".$_SESSION['groupe']."</p>";
 //echo "<p>mdp = ".$_SESSION['password']."</p>";
 echo "<img src=".$_SESSION['photo'].">";
-?>
 
+echo'
 <p><a class="button_" href=edit.php> Modifier </a></div>
-<footer id='bas'>
+<footer>
    <p>Copyright © Wasef Alexandra</p> 
 </footer>
 </div>
 </body>
-</html>
+</html>';
+}
+else{
+	header('Location: connexion.php');
+}
+?>
