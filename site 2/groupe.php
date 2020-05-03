@@ -1,5 +1,6 @@
 <?php
 session_start();
+if (isset($_SESSION['login'])){
 setcookie("LastRequestFiliere",$_GET['filiere'],time()+3600);
 setcookie("LastRequestGroup",$_GET['groupe'],time()+3600);
 // voir les filiere du département informatique
@@ -46,6 +47,7 @@ setcookie("LastRequestGroup",$_GET['groupe'],time()+3600);
     </nav>
 <div class="main">
   <h1>Trombinoscope</h1>
+  <div id='imprime'>
   <h2>Eleves de <?php echo $_GET['filiere']." en ". $_GET['groupe'] ?></h2>
   <?php
   if(isset($_GET['filiere'])and isset($_GET['groupe'])){
@@ -57,8 +59,8 @@ setcookie("LastRequestGroup",$_GET['groupe'],time()+3600);
         echo "<div class='card'>";
           echo "<img src=".$data["eleve"][$i]['picture'].">";
           echo "<div class='container'>";
-            echo "<p> Nom : ".$data["eleve"][$i]['nom']."  ".$data["eleve"][$i]['prenom']."</p>";
-            echo "<p> Mail : ".$data["eleve"][$i]['mail']."</p>";
+            echo "<p> ".$data["eleve"][$i]['nom']."  ".$data["eleve"][$i]['prenom']."</p>";
+            echo "<p> ".$data["eleve"][$i]['mail']."</p>";
           echo"</div>";
         echo "</div>";  
     }
@@ -67,8 +69,28 @@ setcookie("LastRequestGroup",$_GET['groupe'],time()+3600);
 
 
 ?>
+</div>
+<script>
+function printContent(element){
+  var restorepage = document.body.innerHTML;
+  var printcontent = document.getElementById(element).innerHTML;
+  document.body.innerHTML = printcontent;
+  window.print();
+  document.body.innerHTML = restorepage;
+}
+
+</script>
+<div id="center">
+<button onclick="printContent('imprime')">Imprimer</button>
+</div>
 
 
 </div>
 </body>
 </html>
+<?php
+}
+else{
+  header('Location:index.php');
+}
+?>

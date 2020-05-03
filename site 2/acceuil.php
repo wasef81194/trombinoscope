@@ -1,5 +1,7 @@
 <?php
 session_start();
+if (isset($_SESSION['login'])){
+
 // voir les filiere du département informatique
 //voir les une filiere specifies
 //voir un groupe de filiere 
@@ -45,7 +47,7 @@ session_start();
     </nav>
 
 <div class="main">
-
+<div id="imprime">
 <h1>Trombinoscope</h1>
 <h2>Bienvenu <?php echo $_SESSION['login'] ?></h2>
 <div id='center'>
@@ -78,14 +80,40 @@ for ($i=0; $i < 4 ; $i++) {
 
 ?>
 </table>
+</div>
+<script>
+function printContent(element){
+  var restorepage = document.body.innerHTML;
+  var printcontent = document.getElementById(element).innerHTML;
+  document.body.innerHTML = printcontent;
+  window.print();
+  document.body.innerHTML = restorepage;
+}
+
+</script>
+<div id='center'>
+<button onclick="printContent('imprime')">Imprimer</button>
+
 <?php
 if (isset($_COOKIE["LastRequestFiliere"]) and isset($_COOKIE["LastRequestGroup"])) {
 	echo "
-	<div id='center'>
 		<a class='boutton' href='groupe.php?filiere=".$_COOKIE["LastRequestFiliere"]."&groupe=".$_COOKIE["LastRequestGroup"]."&key=pHQxXMN1nO'>Derniere requete </a>
 	</div>	";
 }
+ //<a href='impression.php?page=acceuil'>Imprimer</a>
 ?>
+
+
+
+
+
+
 </div>
 </body>
 </html>
+<?php 
+}
+else{
+  header('Location:index.php');
+}
+?>

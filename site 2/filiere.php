@@ -1,5 +1,6 @@
 <?php
 session_start();
+if (isset($_SESSION['login'])){
 // voir les filiere du département informatique
 //voir les une filiere specifies
 //voir un groupe de filiere 
@@ -44,7 +45,8 @@ session_start();
       </ul> 
     </nav>
 <div class="main">
-	<h1>Trombinoscope</h1>
+  	<h1>Trombinoscope</h1>
+  <div id='imprime'>
 	<h2>Eleves de <?php echo $_GET['filiere']?></h2>
 	<?php
 	if(isset($_GET['filiere'])){
@@ -56,9 +58,9 @@ session_start();
 				echo "<div class='card'>";
 					echo "<img src=".$data["eleve"][$i]['picture'].">";
 					echo "<div class='container'>";
-						echo "<p> Nom : ".$data["eleve"][$i]['nom']."  ".$data["eleve"][$i]['prenom']."</p>";
-						echo "<p> Mail : ".$data["eleve"][$i]['mail']."</p>";
-						echo "<p> Groupe : ".$data["eleve"][$i]['groupe']."</p>";
+						echo "<p> ".$data["eleve"][$i]['nom']."  ".$data["eleve"][$i]['prenom']."</p>";
+						echo "<p>  ".$data["eleve"][$i]['mail']."</p>";
+						echo "<p> ".$data["eleve"][$i]['groupe']."</p>";
 					echo"</div>";
 				echo "</div>";	
 		}
@@ -67,9 +69,26 @@ session_start();
 
 
 ?>
+</div>
+<script>
+function printContent(element){
+  var restorepage = document.body.innerHTML;
+  var printcontent = document.getElementById(element).innerHTML;
+  document.body.innerHTML = printcontent;
+  window.print();
+  document.body.innerHTML = restorepage;
+}
 
-
-
+</script>
+<div id="center">
+<button onclick="printContent('imprime')">Imprimer</button>
+</div>
 </div>
 </body>
 </html>
+<?php
+}
+else{
+  header('Location:index.php');
+}
+?>
