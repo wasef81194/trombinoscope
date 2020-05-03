@@ -94,6 +94,14 @@ session_start();
    				Cette URL permet d'afficher les éléves du groupe de la filiere rechercher. 
    			</p>
    		</article>
+      <h3>Clé d'API</h3>
+      <p>En créant votre compte sur ce site vous pouvez obtenir une clé qui vous permetra de la déposer dans l'url pour que par la suite les donées que vous rechercher s'affiche.</p>
+      <p>
+        Toutefois, cette clés possede une limite d'utilisation. Elle ne peut être utiliser que 150 fois dans l'heure ! 
+      </p>
+      <article>
+        
+      </article>
    	</section>
    </div>
 <footer>

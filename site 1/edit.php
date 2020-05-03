@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+if (isset($_SESSION['login'])) {
 $fichier = "./noacess/document.csv";
 function save($fichier){
     $lines = file($fichier);
@@ -155,3 +156,9 @@ for($i=0;$i<sizeof($lines);$i++){
 </div>
 </body>
 </html>
+<?php
+}
+else{
+    header('Location: connexion.php');
+}
+?>

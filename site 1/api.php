@@ -1,5 +1,6 @@
 <?php 
 session_start();
+if (isset($_SESSION['login'])) {
 function GenereKeys($length=10){
     $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $string = '';
@@ -98,3 +99,10 @@ if (isset($_POST["formtype"])){
 </div>
 </body>
 </html>
+<?php
+}
+else{
+	header('Location: connexion.php');
+}
+?>
+?>
