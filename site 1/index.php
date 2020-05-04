@@ -1,5 +1,17 @@
 <?php
 session_start();
+function logs(){
+  $date = "[".date('d')."/".date('m')."/".date('y')."] ";
+  $hour = "[".date('H').":".date('i').":".date('s')."] ";
+  $ip = $_SERVER['REMOTE_ADDR'];
+  $url = $_SERVER['PHP_SELF'];
+  $answer = $date.$hour.$ip." connecte to ".$url."\n";
+
+  $files = fopen('./noacess/logs.txt', 'a+');
+  fputs($files,$answer);
+  fclose($files);
+}
+logs();
 ?>
 <html>
 		<head>
@@ -54,14 +66,14 @@ session_start();
    				Cette URL permet d'afficher tout les éléves de chaque filieres. Il existe 4 filiere dans le département informatique qui sont les suivante :
    			</p>
    				<table>
-   					<thead> <!-- En-tête du tableau -->
+   					<thead>
        				<tr>
            				<th>Filiere</th>
            				<th colspan="3">Groupe</th>
        				</tr>
    					</thead>
 
-   					<tbody> <!-- Corps du tableau -->
+   					<tbody> 
       					 <tr>
           					 <td>LPI</td>
           					 <td>L1</td>

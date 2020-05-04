@@ -1,4 +1,17 @@
 <?php 
+function logs(){
+  $date = "[".date('d')."/".date('m')."/".date('y')."] ";
+  $hour = "[".date('H').":".date('i').":".date('s')."] ";
+  $ip = $_SERVER['REMOTE_ADDR'];
+  $url = $_SERVER['PHP_SELF'];
+  $answer = $date.$hour.$ip." connecte to ".$url."\n";
+
+  $files = fopen('./noacess/logs.txt', 'a+');
+  fputs($files,$answer);
+  fclose($files);
+}
+logs();
+
 if (isset($_POST["formtype"])){
 	$fichier = "./noacess/document.csv";//./noacess/
 

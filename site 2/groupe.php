@@ -56,11 +56,15 @@ setcookie("LastRequestGroup",$_GET['groupe'],time()+3600);
     //var_dump($data);
     $number = count($data["eleve"]);
     for ($i=0; $i <$number ; $i++) {
-        echo "<div class='card'>";
-          echo "<img src=".$data["eleve"][$i]['picture'].">";
+        echo "<div class='card'>
+                <div class='hide'>";
+          echo "<img class='image' src=".$data["eleve"][$i]['picture'].">
+                 <div class='middle'>";
+          echo "<p class='text'> ".$data["eleve"][$i]['mail']."</p>
+          </div>
+          </div>";
           echo "<div class='container'>";
             echo "<p> ".$data["eleve"][$i]['nom']."  ".$data["eleve"][$i]['prenom']."</p>";
-            echo "<p> ".$data["eleve"][$i]['mail']."</p>";
           echo"</div>";
         echo "</div>";  
     }
