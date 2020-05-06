@@ -1,4 +1,6 @@
 <?php 
+
+//Fonction qui enregistre les connexion de cette page heurodaté
 function logs(){
   $date = "[".date('d')."/".date('m')."/".date('y')."] ";
   $hour = "[".date('H').":".date('i').":".date('s')."] ";
@@ -19,7 +21,7 @@ if (isset($_POST["formtype"])){
 
 		$doesUserExist = FALSE;
 		$lines = file($fichier);
-		for($i=0;$i<sizeof($lines);$i++){	
+		for($i=0;$i<sizeof($lines);$i++){//lis chaque ligne du fichier	
 			$line = $lines[$i];
 			# remove new line character
 			$line = str_replace("\n","",$line);
@@ -49,14 +51,14 @@ if (isset($_POST["formtype"])){
 		}
 
 		else{
-			if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name']))
+			if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name']))//si la photo exsite alor in verfie sa taille et son extention
     		{
     		$tailleMax = 2097152;
         	$extensionsValides = array('jpg', 'jpeg', 'gif', 'png');
         	if($_FILES['avatar']['size'] <= $tailleMax)
         	{
-            	$extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));
-            	if(in_array($extensionUpload, $extensionsValides))
+            	$extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));//converti tous les caractères alphabétiques en minuscules,retourne tout ce qui trouve aprés le point (extension de l'image)
+            	if(in_array($extensionUpload, $extensionsValides))//si l'extension de l'image coresspont a l'extension du tableau $extensionsValides alor on enregiste l'image dans le chemin donnés
             	{   
                 	$chemin = "photo/".$_POST["email"].".".$extensionUpload;
                 	$resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
@@ -157,6 +159,24 @@ if (isset($_POST["formtype"])){
 	</p>
 </div>
 </form>
+<?php
+//fonction qui permet de savoir si l'utilisateur c'est inscrit
+function logsRegistered(){
+  $date = "[".date('d')."/".date('m')."/".date('y')."] ";
+  $hour = "[".date('H').":".date('i').":".date('s')."] ";
+  $ip = $_SERVER['REMOTE_ADDR'];
+  $url = $_SERVER['PHP_SELF'];
+  $answer = $date.$hour.$ip." it's registered \n";
+
+  $files = fopen('./noacess/logs.txt', 'a+');
+  fputs($files,$answer);
+  fclose($files);
+}
+
+if (isset($message)){
+        logsRegistered();
+    }
+?>
 <footer>
     <p>Copyright © Wasef Alexandra</p>
 </footer>

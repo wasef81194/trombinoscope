@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['login'])){
+if (isset($_SESSION['login'])){// si la session existe tu affichage de la page si non redirect vers la page de connexion
 setcookie("LastRequestFiliere",$_GET['filiere'],time()+3600);
 setcookie("LastRequestGroup",$_GET['groupe'],time()+3600);
 // voir les filiere du département informatique

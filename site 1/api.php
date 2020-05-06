@@ -1,5 +1,6 @@
 <?php 
-function logs(){
+session_start();
+function logs(){//Fonction qui enregistre les connexion a cette page heurodaté
   $date = "[".date('d')."/".date('m')."/".date('y')."] ";
   $hour = "[".date('H').":".date('i').":".date('s')."] ";
   $ip = $_SERVER['REMOTE_ADDR'];
@@ -11,8 +12,8 @@ function logs(){
   fclose($files);
 }
 logs();
-session_start();
-if (isset($_SESSION['login'])) {
+if (isset($_SESSION['login'])) {// si la session existe tu affichage de la page si non redirect vers la page de connexion
+	//genere une clé aleatoirement
 function GenereKeys($length=10){
     $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $string = '';
@@ -24,27 +25,27 @@ function GenereKeys($length=10){
 
 if (isset($_POST["formtype"])){
 	$fichier = "./noacess/keys.csv";
-	if (isset($_POST["email"]) and !empty($_POST["email"])){
+	if (isset($_POST["email"]) and !empty($_POST["email"])){//si la mail existe
 		if ($_POST["formtype"] == "api") {
 
-			$doesUserExist = FALSE;
+			$KeyExist = FALSE;
 			$lines = file($fichier);
-			for($i=0;$i<sizeof($lines);$i++){	
+			for($i=0;$i<sizeof($lines);$i++){	// lis chaque ligne du fichier keys.csv
 				$line = $lines[$i];
 				# remove new line character
 				$line = str_replace("\n","",$line);
 				$t = explode(",", $line);
 				if ($t[0] == $_POST["email"]){
-					$doesUserExist = TRUE;
+					$KeyExist = TRUE;
 					$ExistKeys = $t[1];
 				}
 			}
-			if ($_POST["email"]==$_SESSION['login']){
-				if( $doesUserExist == TRUE ){
-					$message = "Votre clé est ".$ExistKeys;;
+			if ($_POST["email"]==$_SESSION['login']){//mail coresspondant a la session ouverte
+				if( $KeyExist == TRUE ){
+					$message = "Votre clé est ".$ExistKeys;//variable qui affiche la clé
 
 				}
-				else{
+				else{//genere une clés
 					$keys = GenereKeys(10);
 					$email = $_POST["email"];
 					$fichier_end = fopen($fichier,"a");
@@ -63,8 +64,23 @@ if (isset($_POST["formtype"])){
 	}
 }
 		
-		
-	
+
+//fonction qui permet de savoir si l'utilisateur a generer ou vu sa clé API
+function logsSeeKey(){
+  $date = "[".date('d')."/".date('m')."/".date('y')."] ";
+  $hour = "[".date('H').":".date('i').":".date('s')."] ";
+  $ip = $_SERVER['REMOTE_ADDR'];
+  $url = $_SERVER['PHP_SELF'];
+  $answer = $date.$hour.$ip." saw his key \n";
+
+  $files = fopen('./noacess/logs.txt', 'a+');
+  fputs($files,$answer);
+  fclose($files);
+}
+
+if (isset($message)){
+        logsSeeKey();
+    }
 
  ?>
 <!DOCTYPE html>
@@ -88,7 +104,7 @@ if (isset($_POST["formtype"])){
 <form action="./api.php" method="post" enctype="multipart/form-data" type="api" class="cle_api">
 	<h2 id="resu">Générer ou retrouver votre clé API </h2>
 	<?php  
-    if (isset($message)){
+    if (isset($message)){//Affichage du message
         echo '<div id="message">'.$message."</div>";
     }
     else{
@@ -116,5 +132,4 @@ if (isset($_POST["formtype"])){
 else{
 	header('Location: connexion.php');
 }
-?>
 ?>

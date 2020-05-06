@@ -1,4 +1,6 @@
 <?php
+
+//fonction qui tri les etudiant par filiere et groupe
 function logs(){
   $date = "[".date('d')."/".date('m')."/".date('y')."] ";
   $hour = "[".date('H').":".date('i').":".date('s')."] ";

@@ -12,6 +12,7 @@ function logs(){
 }
 logs();
 session_start();
+// si la session existe tu affichage de la page si non redirect vers la page de connexion
 if (isset($_SESSION['login'])) {
 
 echo'<html>
@@ -32,11 +33,11 @@ echo'<html>
 			';
 echo "<div id='avatar'>
 	<h2>Profil</h2>";
-echo " <p> E-mail : ".$_SESSION['login']."</p>";
+echo " <div class='gras'> <p> E-mail : ".$_SESSION['login']."</p> ";
 echo "<p>Nom : ".$_SESSION['nom']."</p>";
 echo "<p>Prenom : ".$_SESSION['prenom']."</p>";
 echo "<p>Filiere : ".$_SESSION['filiere']."</p>";
-echo "<p> Groupe : ".$_SESSION['groupe']."</p>";
+echo "<p> Groupe : ".$_SESSION['groupe']."</div></p>";
 //echo "<p>mdp = ".$_SESSION['password']."</p>";
 echo "<img src=".$_SESSION['photo'].">";
 

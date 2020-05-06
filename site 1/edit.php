@@ -1,5 +1,6 @@
 <?php
 session_start();
+//Fonction qui enregistre les connexion de cette page heurodaté
 function logs(){
   $date = "[".date('d')."/".date('m')."/".date('y')."] ";
   $hour = "[".date('H').":".date('i').":".date('s')."] ";
@@ -12,8 +13,10 @@ function logs(){
   fclose($files);
 }
 logs();
+
 if (isset($_SESSION['login'])) {
 $fichier = "./noacess/document.csv";
+//fonction qui enregistre toute les lignes du fichier qui ne corespondent pas a la session ouverte
 function save($fichier){
     $lines = file($fichier);
     $line_saved ='';
@@ -42,9 +45,9 @@ for($i=0;$i<sizeof($lines);$i++){
             $content = save($fichier);
            }
         
-        elseif( $t[2] != $_POST["nom"] or $t[3] != $_POST["prenom"] or $t[4] != $_POST["filiere"] or $t[5] != $_POST["groupe"] or isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name']))
+        elseif( $t[2] != $_POST["nom"] or $t[3] != $_POST["prenom"] or $t[4] != $_POST["filiere"] or $t[5] != $_POST["groupe"] or isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name']))//si l'utilisateur a effectuer des modification
             {
-            if (isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name']))
+            if (isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name']))//si l'utilisateur modifie sa photo
             {
                 $tailleMax = 2097152;
                 $extensionsValides = array('jpg', 'jpeg', 'gif', 'png');
@@ -73,7 +76,7 @@ for($i=0;$i<sizeof($lines);$i++){
                     $message_erreur = "Votre photo de profil ne doit pas dépasser 2Mo ";
                 }
             }
-            else{
+            else{//si l'utilisateur modifie des élement de son profil autre que la photo
                 $fichier_end = fopen($fichier,"w");
                 $content=$content.$new_line;
                 fwrite($fichier_end, $content);
@@ -112,7 +115,7 @@ for($i=0;$i<sizeof($lines);$i++){
 <form action="./edit.php" method="post" class="modification" enctype="multipart/form-data">
     <h2 id="res">Modification </h2>
     <?php  
-    if (isset($message)){
+    if (isset($message)){//affiche le message
         echo '<div id="message">'.$message."</div>";
     }
     else{
@@ -133,7 +136,6 @@ for($i=0;$i<sizeof($lines);$i++){
         <option name="f"><?php echo $_SESSION['filiere']?></option>
         <option name ='f1' >MIPI</option>
         <option name ='f2' >LPI</option>
-        <option name ='f3' >LI</option>
         <option name ='f4' >LPI-RIWS</option>
         <option name ='f5' >LPI-RS</option>
     </select>
@@ -158,7 +160,22 @@ for($i=0;$i<sizeof($lines);$i++){
 </form>
 
 <?php
+//fonction qui permet de savoir si l'utilisateur a modifier son profil
+function logsEdit(){
+  $date = "[".date('d')."/".date('m')."/".date('y')."] ";
+  $hour = "[".date('H').":".date('i').":".date('s')."] ";
+  $ip = $_SERVER['REMOTE_ADDR'];
+  $url = $_SERVER['PHP_SELF'];
+  $answer = $date.$hour.$ip." modify his profile \n";
 
+  $files = fopen('./noacess/logs.txt', 'a+');
+  fputs($files,$answer);
+  fclose($files);
+}
+
+if (isset($message)){
+        logsEdit();
+    }
 ?>
 
 <footer id='bas'>

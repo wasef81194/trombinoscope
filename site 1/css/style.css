@@ -264,3 +264,6 @@ p.url{
   font-weight: bold;
   margin-right: 10px;
 }
+.gras p{
+  font-weight: bold;
+}
