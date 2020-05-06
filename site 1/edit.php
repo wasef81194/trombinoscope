@@ -175,7 +175,7 @@ function logsEdit(){
 
 if (isset($message)){
         logsEdit();
-    }
+    } 
 ?>
 
 <footer id='bas'>
@@ -188,5 +188,5 @@ if (isset($message)){
 }
 else{
     header('Location: connexion.php');
-}
+} 
 ?>

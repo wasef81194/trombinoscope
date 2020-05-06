@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 function logs(){
   $date = "[".date('d')."/".date('m')."/".date('y')."] ";

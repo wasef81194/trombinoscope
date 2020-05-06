@@ -1,4 +1,4 @@
-<?php 
+<?php  
 session_start();
 function logs(){//Fonction qui enregistre les connexion a cette page heurodaté
   $date = "[".date('d')."/".date('m')."/".date('y')."] ";

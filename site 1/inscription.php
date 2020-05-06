@@ -1,5 +1,5 @@
 <?php 
-
+ 
 //Fonction qui enregistre les connexion de cette page heurodaté
 function logs(){
   $date = "[".date('d')."/".date('m')."/".date('y')."] ";

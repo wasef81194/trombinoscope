@@ -14,7 +14,7 @@ setcookie("LastRequestGroup",$_GET['groupe'],time()+3600);
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body>
-    <nav>
+    <nav> 
     <ul>
     <a href="acceuil.php">Acceuil</a>  
     <li><a href="filiere.php?filiere=MIPI&key=pHQxXMN1nO">MIPI</a></li>

@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); 
  /*elseif(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name']))
     	{
     		$tailleMax = 2097152;

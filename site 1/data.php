@@ -126,8 +126,8 @@ elseif (isset($_GET['requete']) and isset($_GET['key']) and VerifyKeys($_GET['ke
 		echo " Vous avez atteint le nombre maximal d'utilisation de votre clé réesayer dans une heure";
 	}
 }
-else{
+else{ 
 	echo " Erreur votre url n'est pas conforme";
 }
 
-?>
+?> 

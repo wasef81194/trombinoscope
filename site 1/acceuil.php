@@ -1,4 +1,4 @@
-<?php
+<?php 
 function logs(){
   $date = "[".date('d')."/".date('m')."/".date('y')."] ";
   $hour = "[".date('H').":".date('i').":".date('s')."] ";
