@@ -32,7 +32,7 @@ function save($fichier){
 }
 $lines = file($fichier);
 $line_saved ='';
-
+$content = save($fichier);
 
 for($i=0;$i<sizeof($lines);$i++){   
     $line = $lines[$i];
@@ -55,13 +55,13 @@ for($i=0;$i<sizeof($lines);$i++){
                 {
                     $extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));
                     if(in_array($extensionUpload, $extensionsValides))
-                {   
+                {       
                         $chemin = "photo/".$t[0].".".$extensionUpload;
                         $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
                         $fichier_end = fopen($fichier,"w");
-                        $n_line = $t[0].",".$t[1].",".$_POST["nom"].",".$_POST["prenom"].",".$_POST["filiere"].",".$_POST["groupe"].",".$chemin;
-                        $content=$content.$n_line;
-                        fwrite($fichier_end, $content);
+                        $n_line = $t[0].",".$t[1].",".$_POST["nom"].",".$_POST["prenom"].",".$_POST["filiere"].",".$_POST["groupe"].",".$chemin."\n";
+                        $line_saved= $line_saved.$content.$n_line;
+                        fwrite($fichier_end, $line_saved);
                         fclose($fichier_end);
                         $_SESSION['photo']= $chemin;
                         $message = "Vos modification ont bien été prise en compte";
@@ -78,8 +78,8 @@ for($i=0;$i<sizeof($lines);$i++){
             }
             else{//si l'utilisateur modifie des élement de son profil autre que la photo
                 $fichier_end = fopen($fichier,"w");
-                $content=$content.$new_line;
-                fwrite($fichier_end, $content);
+                $line_saved= $line_saved.$content.$new_line;
+                fwrite($fichier_end, $line_saved);
                 fclose($fichier_end);
                 $_SESSION['nom']= $_POST["nom"];
                 $_SESSION['prenom']=$_POST["prenom"];
@@ -149,7 +149,7 @@ for($i=0;$i<sizeof($lines);$i++){
     <p> Saissiez votre photo de profil :</p>
     <p><input type="file" name="avatar" /></p>
     </p>
-    <input type="hidden" name="formtype" value="connexion" />
+    <input type="hidden" name="formtype" value="modification" />
     </p>
     <p>
     <input type="submit" value="valider" class="button" />
