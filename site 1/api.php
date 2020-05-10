@@ -84,13 +84,12 @@ if (isset($message)){
 
  ?>
 <!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
-    </meta>
-	<title>Trombinoscope-API</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css"></link>
-</head>
+<html lang="fr">
+		<head>
+   			 <meta charset="utf-8">
+			<title>Trombinoscope-API</title>
+			<link rel="stylesheet" type="text/css" href="css/style.css">
+		</head>
 <body>
 <div id="carte">
 <div class="navbar">
@@ -101,7 +100,7 @@ if (isset($message)){
      <a href="index.php">Documentation</a>
                 
  </div>
-<form action="./api.php" method="post" enctype="multipart/form-data" type="api" class="cle_api">
+<form action="./api.php" method="post" enctype="multipart/form-data" class="cle_api">
 	<h2 id="resu">Générer ou retrouver votre clé API </h2>
 	<?php  
     if (isset($message)){//Affichage du message
@@ -112,12 +111,11 @@ if (isset($message)){
     }
      ?>
 	<p>Entrer votre mail:</p>
-	<input type="e-mail" name="email" value="<?php 
+	<input type="email" name="email" value="<?php 
 	if (isset($_SESSION['login'])){
 		echo$_SESSION['login'];}?>"/>
-	</p>
 	<input type="hidden" name="formtype" value="api" />
-	<input type="submit" value="valider" class="button" />
+	<p><input type="submit" value="valider" class="button" /></p>
 
 </form>
 

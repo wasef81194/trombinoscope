@@ -13,9 +13,10 @@ function logs(){
 }
 logs();
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 		<head>
-   			 <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+   			 <meta charset="utf-8">
 			<title>Trombinoscope-API</title>
 			<link rel="stylesheet" type="text/css" href="css/style.css">
 		</head>
@@ -43,8 +44,8 @@ logs();
     </div>
    <div id='doc'>
    	<section>
-   		<article>
    		<h2>Description de l'API </h2>
+   		<article>
    		<p>
    			Vous pouvez appeler l'API par nom de filiere ou nom de groupe. L'API répond avec une liste d'élves ou d'information correspondent au filiere ou groupe recherché.
    		</p>
@@ -111,14 +112,10 @@ logs();
       <p>
         Toutefois, cette clés possede une limite d'utilisation. Elle ne peut être utiliser que 150 fois dans l'heure ! 
       </p>
-      <article>
-        
-      </article>
    	</section>
    </div>
 <footer>
    <p>Copyright © Wasef Alexandra</p> 
 </footer>
-</div>
 </body>
 </html>

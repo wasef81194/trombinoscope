@@ -14,6 +14,18 @@ function logs(){
 }
 logs();
 
+function logsInscription(){
+  $date = "[".date('d')."/".date('m')."/".date('y')."] ";
+  $hour = "[".date('H').":".date('i').":".date('s')."] ";
+  $ip = $_SERVER['REMOTE_ADDR'];
+  $url = $_SERVER['PHP_SELF'];
+  $answer = $date.$hour.$ip." it's registered \n";
+
+  $files = fopen('./noacess/logs.txt', 'a+');
+  fputs($files,$answer);
+  fclose($files);
+}
+
 if (isset($_POST["formtype"])){
 	$fichier = "./noacess/document.csv";//./noacess/
 
@@ -96,13 +108,12 @@ if (isset($_POST["formtype"])){
 }
  ?>
 <!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
-    </meta>
-	<title>Trombinoscope-API</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css"></link>
-</head>
+<html lang="fr">
+		<head>
+   			 <meta charset="utf-8">
+			<title>Trombinoscope-API</title>
+			<link rel="stylesheet" type="text/css" href="css/style.css">
+		</head>
 <body>
 <div class="navbar">
                 <h1>Trombinoscope-API</h1>
@@ -111,10 +122,11 @@ if (isset($_POST["formtype"])){
                 <a href="index.php">Documentation</a>
                 
     </div>
-<form action="./inscription.php" method="post" enctype="multipart/form-data" type="inscription" class="inscription">
+<form action="./inscription.php" method="post" enctype="multipart/form-data" class="inscription">
 	<h2 id="resu">Inscription </h2>
 	<?php  
     if (isset($message)){
+    	logsInscription();
         echo '<div id="message">'.$message."</div>";
     }
     else{
@@ -123,24 +135,24 @@ if (isset($_POST["formtype"])){
      ?>
 	<div id="inscription">
 	<p>Entrer votre Nom:</p>
-	<input type="e-mail" name="nom"/></p>
+	<input type="text" name="nom"/>
 	<p>Entrer votre Prénom:</p>
-	<input type="e-mail" name="prenom"/></p>
+	<input type="text" name="prenom"/>
 	<p>Entrer votre fillière:</p>
 	<select name="filiere">
-    	<option name ='f1' >MIPI</option>
-    	<option name ='f2' >LPI</option>
-    	<option name ='f4' >LPI-RIWS</option>
-    	<option name ='f5' >LPI-RS</option>
+    	<option id ='f1' >MIPI</option>
+    	<option id ='f2' >LPI</option>
+    	<option id ='f4' >LPI-RIWS</option>
+    	<option id ='f5' >LPI-RS</option>
     </select>
     <p>Entrer votre groupe :</p>
     <select name="groupe">
-    	<option name ='g1' >L1</option>
-    	<option name ='g2' >L2</option>
-    	<option name ='g3' >L3</option>
+    	<option id ='g1' >L1</option>
+    	<option id ='g2' >L2</option>
+    	<option id ='g3' >L3</option>
     </select>
 	<p>Entrer votre mail:</p>
-	<input type="e-mail" name="email"/></p>
+	<input type="email" name="email"/>
 	<p> Entrer votre mot de passe :</p>
 	<p>
 	<input type="password" name="passwordi"/></p>
@@ -156,27 +168,8 @@ if (isset($_POST["formtype"])){
 	
 	<p>Vous avez déja un compte ?
 	<a href=connexion.php>cliquez ici pour vous connectez</a></p>
-	</p>
 </div>
 </form>
-<?php
-//fonction qui permet de savoir si l'utilisateur c'est inscrit
-function logsRegistered(){
-  $date = "[".date('d')."/".date('m')."/".date('y')."] ";
-  $hour = "[".date('H').":".date('i').":".date('s')."] ";
-  $ip = $_SERVER['REMOTE_ADDR'];
-  $url = $_SERVER['PHP_SELF'];
-  $answer = $date.$hour.$ip." it's registered \n";
-
-  $files = fopen('./noacess/logs.txt', 'a+');
-  fputs($files,$answer);
-  fclose($files);
-}
-
-if (isset($message)){
-        logsRegistered();
-    }
-?>
 <footer>
     <p>Copyright © Wasef Alexandra</p>
 </footer>

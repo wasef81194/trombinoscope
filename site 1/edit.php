@@ -40,13 +40,14 @@ for($i=0;$i<sizeof($lines);$i++){
     //$line = str_replace("\n","",$line);
     $t = explode(",", $line);
     $new_line = $t[0].",".$t[1].",".$_POST["nom"].",".$_POST["prenom"].",".$_POST["filiere"].",".$_POST["groupe"].",".$t[6];
+
     if (isset($_POST["prenom"]) and isset($_POST["nom"])){
         if ($t[0] != $_SESSION['login']){ 
             $content = save($fichier);
            }
         
         elseif( $t[2] != $_POST["nom"] or $t[3] != $_POST["prenom"] or $t[4] != $_POST["filiere"] or $t[5] != $_POST["groupe"] or isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name']))//si l'utilisateur a effectuer des modification
-            {
+        {
             if (isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name']))//si l'utilisateur modifie sa photo
             {
                 $tailleMax = 2097152;
@@ -55,7 +56,7 @@ for($i=0;$i<sizeof($lines);$i++){
                 {
                     $extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));
                     if(in_array($extensionUpload, $extensionsValides))
-                {       
+                	{       
                         $chemin = "photo/".$t[0].".".$extensionUpload;
                         $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
                         $fichier_end = fopen($fichier,"w");
@@ -95,14 +96,14 @@ for($i=0;$i<sizeof($lines);$i++){
     }
     }
 ?>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
-        <title>Trombinoscope-API</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-    </head>
+<!DOCTYPE html>
+<html lang="fr">
+		<head>
+   			 <meta charset="utf-8">
+			<title>Trombinoscope-API</title>
+			<link rel="stylesheet" type="text/css" href="css/style.css">
+		</head>
 <body>
-    <div  id="carte">
     <div class="navbar">
                 <h1>Trombinoscope-API</h1>
                 <a href="deconnexion.php">Déconnexion</a>
@@ -133,24 +134,22 @@ for($i=0;$i<sizeof($lines);$i++){
          ?>" /></p>
     <p>Entrer votre filière :</p>
     <select name="filiere">
-        <option name="f"><?php echo $_SESSION['filiere']?></option>
-        <option name ='f1' >MIPI</option>
-        <option name ='f2' >LPI</option>
-        <option name ='f4' >LPI-RIWS</option>
-        <option name ='f5' >LPI-RS</option>
+        <option id="f"><?php echo $_SESSION['filiere']?></option>
+        <option id ='f1' >MIPI</option>
+        <option id ='f2' >LPI</option>
+        <option id ='f4' >LPI-RIWS</option>
+        <option id ='f5' >LPI-RS</option>
     </select>
     <p>Entrer votre groupe :</p>
     <select name="groupe">
-        <option name="g"><?php echo $_SESSION['groupe']?></option>
-        <option name ='g1' >L1</option>
-        <option name ='g2' >L2</option>
-        <option name ='g3' >L3</option>
+        <option id="g"><?php echo $_SESSION['groupe']?></option>
+        <option id ='g1' >L1</option>
+        <option id ='g2' >L2</option>
+        <option id ='g3' >L3</option>
     </select>
     <p> Saissiez votre photo de profil :</p>
     <p><input type="file" name="avatar" /></p>
-    </p>
     <input type="hidden" name="formtype" value="modification" />
-    </p>
     <p>
     <input type="submit" value="valider" class="button" />
 
