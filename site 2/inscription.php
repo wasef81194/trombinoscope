@@ -49,16 +49,15 @@ if (isset($_POST["formtype"])){
 }
  ?>
 <!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
-    </meta>
-	<title>Trombinoscope</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css"></link>
-</head>
+<html lang="fr">
+    <head>
+         <meta charset="utf-8">
+      <title>Trombinoscope</title>
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
 <body class="font">
 <h1>Trombinoscope</h1>
-<form action="./inscription.php" method="post" enctype="multipart/form-data" type="inscription" class="inscription">
+<form action="./inscription.php" method="post" enctype="multipart/form-data" class="inscription">
 	<h2 id="resu">Inscription </h2>
 	<?php  
     if (isset($message)){
@@ -70,7 +69,7 @@ if (isset($_POST["formtype"])){
      ?>
 	<div id="inscription">
 	<p>Entrer votre mail:</p>
-	<input type="e-mail" name="email"/></p>
+	<input type="email" name="email"/>
 	<p> Entrer votre mot de passe :</p>
 	<p>
 	<input type="password" name="passwordi"/></p>
@@ -83,7 +82,6 @@ if (isset($_POST["formtype"])){
 	
 	<p>Vous avez déja un compte ?
 	<a href=index.php>cliquez ici pour vous connectez</a></p>
-	</p>
 </div>
 </form>
 <footer>

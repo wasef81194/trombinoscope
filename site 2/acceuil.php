@@ -7,16 +7,17 @@ if (isset($_SESSION['login'])){
 //voir un groupe de filiere 
 
 ?>
-<html>
-	<head>
-   		<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
-		<title>Trombinoscope</title>
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-	</head>
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+         <meta charset="utf-8">
+      <title>Trombinoscope</title>
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
 	<body>
 		<nav>
     <ul>
-    <a href="acceuil.php">Acceuil</a>  
+    <li><a href="acceuil.php">Acceuil</a></li>
     <li><a href="filiere.php?filiere=MIPI&key=pHQxXMN1nO">MIPI</a></li>
       <ul>
       <li><a href="groupe.php?filiere=MIPI&groupe=L1&key=pHQxXMN1nO">MIPI-L1</a></li>
@@ -37,11 +38,11 @@ if (isset($_SESSION['login'])){
       </ul>
     <li><a href="filiere.php?filiere=LPI-RS&key=pHQxXMN1nO">LPI-RS</a></li>
       <ul>
-      <a href="groupe.php?filiere=LPI-RS&groupe=L1&key=pHQxXMN1nO">LPI-RS-L1</a></li>
-      <a href="groupe.php?filiere=LPI-RS&groupe=L2&key=pHQxXMN1nO">LPI-RS-L2</a></li>
-      <a href="groupe.php?filiere=LPI-RS&groupe=L3&key=pHQxXMN1nO">LPI-RS-L3</a></li>
-      </ul>
-         <a href="deconnexion.php">Déconnexion</a>
+      <li><a href="groupe.php?filiere=LPI-RS&groupe=L1&key=pHQxXMN1nO">LPI-RS-L1</a></li>
+      <li><a href="groupe.php?filiere=LPI-RS&groupe=L2&key=pHQxXMN1nO">LPI-RS-L2</a></li>
+      <li><a href="groupe.php?filiere=LPI-RS&groupe=L3&key=pHQxXMN1nO">LPI-RS-L3</a></li>
+      <li></ul>
+         <li><a href="deconnexion.php">Déconnexion</a></li>
          <p>© Wasef Alexandra</p>
       </ul> 
     </nav>

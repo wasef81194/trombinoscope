@@ -5,12 +5,13 @@ if (isset($_SESSION['login'])){
 //voir les une filiere specifies
 //voir un groupe de filiere 
 ?>
-<html>
-	<head>
-   		<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
-		<title>Trombinoscope</title>
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-	</head>
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+         <meta charset="utf-8">
+      <title>Trombinoscope</title>
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
 	<body>
 		<nav>
     <ul>
@@ -40,7 +41,7 @@ if (isset($_SESSION['login'])){
       <a href="groupe.php?filiere=LPI-RS&groupe=L3&key=pHQxXMN1nO">LPI-RS-L3</a></li>
       
       </ul>
-         <a href="deconnexion.php">Déconnexion</a>
+         <li><a href="deconnexion.php">Déconnexion</a></li>
          <p>© Wasef Alexandra</p>
       </ul> 
     </nav>
@@ -88,7 +89,6 @@ function printContent(element){
 </script>
 <div id="center">
 <button onclick="printContent('imprime')">Imprimer</button>
-</div>
 </div>
 </div>
 </body>

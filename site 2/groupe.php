@@ -7,12 +7,13 @@ setcookie("LastRequestGroup",$_GET['groupe'],time()+3600);
 //voir les une filiere specifies
 //voir un groupe de filiere 
 ?>
-<html>
-  <head>
-      <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
-    <title>Trombinoscope</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-  </head>
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+         <meta charset="utf-8">
+      <title>Trombinoscope</title>
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
   <body>
     <nav> 
     <ul>

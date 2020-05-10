@@ -33,13 +33,12 @@ if (isset($_POST["formtype"])){
 
 ?>
 <!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
-    </meta>
-	<title>Trombinoscope</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css"></link>
-</head>
+<html lang="fr">
+    <head>
+         <meta charset="utf-8">
+      <title>Trombinoscope</title>
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
 <body class="font">
 <h1>Trombinoscope</h1>
 <form action="./index.php" method="post">
@@ -52,7 +51,7 @@ if (isset($_POST["formtype"])){
     <div id="connexion">
 	<p> Entrer votre login : </p>
 	<p>
-	<input type="e-mail" name="login"/></p>
+	<input type="email" name="login"/></p>
 	<p> Entrer votre mot de passe :</p>
 	<p>
 	<input type="password" name="password"/>
@@ -63,8 +62,6 @@ if (isset($_POST["formtype"])){
 	<input type="submit" value="valider" class="button" />
 	<p>Vous n'avez pas encore de compte ?
 	<a href="inscription.php" > cliquez ici pour vous inscrire</a></p>
-
-	</p>
 </div>
 </form>
 
